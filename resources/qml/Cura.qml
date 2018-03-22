@@ -424,7 +424,7 @@ UM.MainWindow
                 }
 
                 width: initialWidth
-                x: base.width - sidebar.width
+                x: 0 //base.width - sidebar.width
                 source: UM.Controller.activeStage.sidebarComponent
 
                 NumberAnimation {
