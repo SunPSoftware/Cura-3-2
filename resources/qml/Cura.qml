@@ -333,19 +333,19 @@ UM.MainWindow
                     }
                 }
             }
-
+			// moved it to the right of the sidebar after moving sidebar to the left 2017.11.10
             JobSpecs
             {
                 id: jobSpecs
                 anchors
                 {
                     bottom: parent.bottom;
-                    right: sidebar.left;
+                    left: sidebar.right;
                     bottomMargin: UM.Theme.getSize("default_margin").height;
-                    rightMargin: UM.Theme.getSize("default_margin").width;
+                    leftMargin: UM.Theme.getSize("default_margin").width;
                 }
             }
-
+			// moved it to the right of the sidebar after moving sidebar to the left 2017.11.10
             Button
             {
                 id: openFileButton;
@@ -357,11 +357,11 @@ UM.MainWindow
                 {
                     top: topbar.bottom;
                     topMargin: UM.Theme.getSize("default_margin").height;
-                    left: parent.left;
+                    left: sidebar.right;
                 }
                 action: Cura.Actions.open;
             }
-
+			// moved it to the right of the sidebar after moving sidebar to the left 2017.11.10
             Toolbar
             {
                 id: toolbar;
@@ -372,7 +372,7 @@ UM.MainWindow
                 anchors {
                     top: openFileButton.bottom;
                     topMargin: UM.Theme.getSize("window_margin").height;
-                    left: parent.left;
+                    left: sidebar.right;
                 }
             }
 
@@ -383,7 +383,7 @@ UM.MainWindow
                 anchors
                 {
                     bottom: parent.bottom;
-                    left: parent.left;
+                    left: sidebar.right;
                 }
 
             }
@@ -464,8 +464,8 @@ UM.MainWindow
                 {
                     top: topbar.bottom
                     bottom: parent.bottom
-                    left: parent.left
-                    right: sidebar.left
+                    right: parent.right
+                    left: sidebar.right
                 }
 
                 MouseArea
@@ -484,7 +484,7 @@ UM.MainWindow
                 anchors
                 {
                     horizontalCenter: parent.horizontalCenter
-                    horizontalCenterOffset: -(Math.round(UM.Theme.getSize("sidebar").width / 2))
+                    horizontalCenterOffset: (Math.round(UM.Theme.getSize("sidebar").width / 2))
                     top: parent.verticalCenter;
                     bottom: parent.bottom;
                 }
