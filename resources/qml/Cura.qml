@@ -246,7 +246,7 @@ UM.MainWindow
                     onObjectRemoved: extension_menu.removeItem(object)
                 }
             }
-
+			/*
             Menu
             {
                 id: plugin_menu
@@ -255,14 +255,14 @@ UM.MainWindow
                 MenuItem { action: Cura.Actions.browsePlugins }
                 MenuItem { action: Cura.Actions.configurePlugins }
             }
-
+			*/
             Menu
             {
                 title: catalog.i18nc("@title:menu menubar:toplevel","P&references");
 
                 MenuItem { action: Cura.Actions.preferences; }
             }
-
+			/*
             Menu
             {
                 //: Help menu
@@ -274,6 +274,7 @@ UM.MainWindow
                 MenuSeparator { }
                 MenuItem { action: Cura.Actions.about; }
             }
+			*/
         }
 
         UM.SettingPropertyProvider
