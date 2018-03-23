@@ -106,8 +106,8 @@ Rectangle
         anchors
         {
             verticalCenter: base.verticalCenter
-            right: viewModeButton.left
-            rightMargin: UM.Theme.getSize("default_margin").width
+            left: viewModeButton.right
+            leftMargin: UM.Theme.getSize("default_margin").width
         }
 
         // #1 3d view
