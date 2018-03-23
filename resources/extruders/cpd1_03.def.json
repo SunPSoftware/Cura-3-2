@@ -1,7 +1,7 @@
 {
     "id": "desktop_extruder_3",
     "version": 2,
-    "name": "1",
+    "name": "3",
     "inherits": "fdmextruder",
     "metadata": {
         "machine": "cpd1",
