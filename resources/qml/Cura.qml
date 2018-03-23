@@ -407,7 +407,7 @@ UM.MainWindow
                     if (collapsed) {
                         sidebar.visible = true;
                         sidebar.initialWidth = UM.Theme.getSize("sidebar").width;
-                        viewportRect = Qt.rect(0, 0, (base.width - sidebar.width) / base.width, 1.0);
+                        viewportRect = Qt.rect(0, 0, 1,1.0);//(base.width - sidebar.width) / base.width, 1.0);
                         expandSidebarAnimation.start();
                     } else {
                         viewportRect = Qt.rect(0, 0, 1, 1.0);
@@ -431,7 +431,7 @@ UM.MainWindow
                     id: collapseSidebarAnimation
                     target: sidebar
                     properties: "x"
-                    to: base.width
+                    to: -sidebar.wifth //base.width
                     duration: 100
                 }
 
@@ -439,7 +439,7 @@ UM.MainWindow
                     id: expandSidebarAnimation
                     target: sidebar
                     properties: "x"
-                    to: base.width - sidebar.width
+                    to: 0 // base.width - sidebar.width
                     duration: 100
                 }
 
