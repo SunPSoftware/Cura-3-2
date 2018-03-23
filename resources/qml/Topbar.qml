@@ -51,7 +51,7 @@ Rectangle
     {
         id: logo
         anchors.left: parent.left
-        anchors.leftMargin: UM.Theme.getSize("default_margin").width
+        //anchors.leftMargin: UM.Theme.getSize("default_margin").width
         anchors.verticalCenter: parent.verticalCenter
 
         source: UM.Theme.getImage("logo");
