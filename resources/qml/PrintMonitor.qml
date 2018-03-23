@@ -723,35 +723,78 @@ Column
                 verticalAlignment: Text.AlignVCenter
             }
 
-            GridLayout
+           Column
             {
-                columns: 3
-                rows: 4
-                rowSpacing: UM.Theme.getSize("default_lining").width
-                columnSpacing: UM.Theme.getSize("default_lining").height
+                spacing: UM.Theme.getSize("default_lining").height
 
                 Label
                 {
-                    text: catalog.i18nc("@label", "X/Y")
+                    text: catalog.i18nc("@label", "X")
                     color: UM.Theme.getColor("setting_control_text")
                     font: UM.Theme.getFont("default")
-                    width: height
+                    width: UM.Theme.getSize("section").height
                     height: UM.Theme.getSize("setting_control").height
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignHCenter
-
-                    Layout.row: 1
-                    Layout.column: 2
-                    Layout.preferredWidth: width
-                    Layout.preferredHeight: height
                 }
 
                 Button
                 {
-                    Layout.row: 2
-                    Layout.column: 2
-                    Layout.preferredWidth: width
-                    Layout.preferredHeight: height
+                    iconSource: UM.Theme.getIcon("arrow_top");
+                    style: monitorButtonStyle
+                    width: height
+                    height: UM.Theme.getSize("setting_control").height
+
+                    onClicked:
+                    {
+                        connectedPrinter.moveHead(distancesRow.currentDistance, 0, 0)
+                    }
+                }
+
+                Button
+                {
+                    iconSource: UM.Theme.getIcon("home");
+                    style: monitorButtonStyle
+                    width: height
+                    height: UM.Theme.getSize("setting_control").height
+
+                    onClicked:
+                    {
+                        connectedPrinter.homeX()
+                    }
+                }
+
+                Button
+                {
+                    iconSource: UM.Theme.getIcon("arrow_bottom");
+                    style: monitorButtonStyle
+                    width: height
+                    height: UM.Theme.getSize("setting_control").height
+
+                    onClicked:
+                    {
+                        connectedPrinter.moveHead(-distancesRow.currentDistance, 0, 0)
+                    }
+                }
+            }
+
+			Column
+            {
+                spacing: UM.Theme.getSize("default_lining").height
+
+                Label
+                {
+                    text: catalog.i18nc("@label", "Y")
+                    color: UM.Theme.getColor("setting_control_text")
+                    font: UM.Theme.getFont("default")
+                    width: UM.Theme.getSize("section").height
+                    height: UM.Theme.getSize("setting_control").height
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                }
+
+                Button
+                {
                     iconSource: UM.Theme.getIcon("arrow_top");
                     style: monitorButtonStyle
                     width: height
@@ -765,44 +808,19 @@ Column
 
                 Button
                 {
-                    Layout.row: 3
-                    Layout.column: 1
-                    Layout.preferredWidth: width
-                    Layout.preferredHeight: height
-                    iconSource: UM.Theme.getIcon("arrow_left");
+                    iconSource: UM.Theme.getIcon("home");
                     style: monitorButtonStyle
                     width: height
                     height: UM.Theme.getSize("setting_control").height
 
                     onClicked:
                     {
-                        connectedPrinter.moveHead(-distancesRow.currentDistance, 0, 0)
+                        connectedPrinter.homeY()
                     }
                 }
 
                 Button
                 {
-                    Layout.row: 3
-                    Layout.column: 3
-                    Layout.preferredWidth: width
-                    Layout.preferredHeight: height
-                    iconSource: UM.Theme.getIcon("arrow_right");
-                    style: monitorButtonStyle
-                    width: height
-                    height: UM.Theme.getSize("setting_control").height
-
-                    onClicked:
-                    {
-                        connectedPrinter.moveHead(distancesRow.currentDistance, 0, 0)
-                    }
-                }
-
-                Button
-                {
-                    Layout.row: 4
-                    Layout.column: 2
-                    Layout.preferredWidth: width
-                    Layout.preferredHeight: height
                     iconSource: UM.Theme.getIcon("arrow_bottom");
                     style: monitorButtonStyle
                     width: height
@@ -811,23 +829,6 @@ Column
                     onClicked:
                     {
                         connectedPrinter.moveHead(0, -distancesRow.currentDistance, 0)
-                    }
-                }
-
-                Button
-                {
-                    Layout.row: 3
-                    Layout.column: 2
-                    Layout.preferredWidth: width
-                    Layout.preferredHeight: height
-                    iconSource: UM.Theme.getIcon("home");
-                    style: monitorButtonStyle
-                    width: height
-                    height: UM.Theme.getSize("setting_control").height
-
-                    onClicked:
-                    {
-                        connectedPrinter.homeHead()
                     }
                 }
             }
@@ -884,6 +885,115 @@ Column
                     onClicked:
                     {
                         connectedPrinter.moveHead(0, 0, -distancesRow.currentDistance)
+                    }
+                }
+            }
+			Column
+            {
+				spacing: UM.Theme.getSize("default_lining").height
+                
+				Label
+                {
+                    text: catalog.i18nc("@label", "")
+                    color: UM.Theme.getColor("setting_control_text")
+                    font: UM.Theme.getFont("default")
+                    width: UM.Theme.getSize("section").height
+                    height: UM.Theme.getSize("setting_control").height
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                }
+
+                Button
+                {
+                    style: textButtonStyle
+					text: "Extrude"
+                    width: height * 2.5
+                    height: UM.Theme.getSize("setting_control").height
+
+                    onClicked:
+                    {
+                        connectedPrinter.moveExtruder(distancesRow.currentDistance)
+                    }
+                }
+
+                Button
+                {
+                    style: textButtonStyle
+					text: "Reverse"
+                    width: height * 2.5
+                    height: UM.Theme.getSize("setting_control").height
+
+                    onClicked:
+                    {
+                        connectedPrinter.moveExtruder(-distancesRow.currentDistance)
+                    }
+                }
+
+                Button
+                {
+                    style: textButtonStyle
+					text: "Home All"
+                    width: height * 2.5
+                    height: UM.Theme.getSize("setting_control").height
+
+                    onClicked:
+                    {
+                        connectedPrinter.homeBed()
+						connectedPrinter.homeHead()
+                    }
+                }
+            }
+			Column
+            {
+				spacing: UM.Theme.getSize("default_lining").height
+                
+				Label
+                {
+                    text: catalog.i18nc("@label", "Tool")
+                    color: UM.Theme.getColor("setting_control_text")
+                    font: UM.Theme.getFont("default")
+                    width: UM.Theme.getSize("section").height
+                    height: UM.Theme.getSize("setting_control").height
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                }
+
+                Button
+                {
+                    style: textButtonStyle
+					text: "1"
+                    width: height
+                    height: UM.Theme.getSize("setting_control").height
+
+                    onClicked:
+                    {
+                        connectedPrinter.changeTool(0)
+            }
+        }
+		
+                Button
+                {
+                    style: textButtonStyle
+					text: "2"
+                    width: height
+                    height: UM.Theme.getSize("setting_control").height
+
+                    onClicked:
+                    {
+                        connectedPrinter.changeTool(1)
+                    }
+                }
+
+				Button
+                {
+                    style: textButtonStyle
+					text: "3"
+                    width: height
+                    height: UM.Theme.getSize("setting_control").height
+
+                    onClicked:
+                    {
+                        connectedPrinter.changeTool(2)
                     }
                 }
             }
@@ -1003,12 +1113,55 @@ Column
         ListModel
         {
             id: distancesModel
-            ListElement { label: "0.1"; value: 0.1 }
-            ListElement { label: "1";   value: 1   }
-            ListElement { label: "10";  value: 10  }
-            ListElement { label: "100"; value: 100 }
+			ListElement { label: "0.02"; value: 0.02}
+            ListElement { label: "0.1";  value: 0.1 }
+            ListElement { label: "1";    value: 1.0 }
+            ListElement { label: "10";   value: 10  }
+            ListElement { label: "100";  value: 100 }
         }
         ExclusiveGroup { id: distanceGroup }
+
+		Row
+		{
+			width: base.width - 2 * UM.Theme.getSize("default_margin").width
+            height: childrenRect.height + UM.Theme.getSize("default_margin").width
+            anchors.left: parent.left
+            anchors.leftMargin: UM.Theme.getSize("default_margin").width
+
+            spacing: UM.Theme.getSize("default_margin").width
+
+            Label
+            {
+                text: catalog.i18nc("@label", "Send GCode")
+                color: UM.Theme.getColor("setting_control_text")
+                font: UM.Theme.getFont("default")
+
+                width: Math.floor(parent.width * 0.4) - UM.Theme.getSize("default_margin").width
+                height: UM.Theme.getSize("setting_control").height
+                verticalAlignment: Text.AlignVCenter
+            }
+
+			TextField
+            {
+                id: sendingGCode
+				font: UM.Theme.getFont("default")
+                onAccepted: connectedPrinter.directGCode(text)
+            }
+
+			Button
+                {
+                    text: "Enter";
+                    height: UM.Theme.getSize("setting_control").height
+					width: height + UM.Theme.getSize("default_margin").width
+
+					style: textButtonStyle
+
+                    onClicked:
+                    {
+                        connectedPrinter.directGCode(sendingGCode.text)
+                    }
+                }
+		}
     }
 
 
@@ -1036,6 +1189,18 @@ Column
         property string value: connectedPrinter != null ? getPrettyTime(connectedPrinter.timeTotal - connectedPrinter.timeElapsed) : ""
         visible: connectedPrinter != null && (connectedPrinter.jobState == "printing" || connectedPrinter.jobState == "resuming" || connectedPrinter.jobState == "pausing" || connectedPrinter.jobState == "paused")
     }
+
+    Component
+    {
+		id: textButtonStyle
+		ButtonStyle {
+						background: Rectangle {
+							color: UM.Theme.getColor("action_button")
+							border.width: UM.Theme.getSize("default_lining").width
+							border.color: UM.Theme.getColor("action_button_border")
+						}
+					}
+	}
 
     Component
     {
