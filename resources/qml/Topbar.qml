@@ -127,7 +127,7 @@ Rectangle
             style: UM.Theme.styles.small_tool_button
             anchors.verticalCenter: viewOrientationControl.verticalCenter
             onClicked: UM.Controller.rotateView("home", 0);
-            visible: base.width - allItemsWidth - 3 * this.width > 0
+            visible: true //base.width - allItemsWidth - 3 * this.width > 0
         }
 
         // #3 Top view
@@ -137,7 +137,7 @@ Rectangle
             style: UM.Theme.styles.small_tool_button
             anchors.verticalCenter: viewOrientationControl.verticalCenter
             onClicked: UM.Controller.rotateView("y", 90)
-            visible: base.width - allItemsWidth - 2 * this.width > 0
+            visible: true //base.width - allItemsWidth - 2 * this.width > 0
         }
 
         // #4 Left view
@@ -147,7 +147,7 @@ Rectangle
             style: UM.Theme.styles.small_tool_button
             anchors.verticalCenter: viewOrientationControl.verticalCenter
             onClicked: UM.Controller.rotateView("x", 90)
-            visible: base.width - allItemsWidth - 1 * this.width > 0
+            visible: true //base.width - allItemsWidth - 1 * this.width > 0
         }
 
         // #5 Left view
@@ -157,7 +157,7 @@ Rectangle
             style: UM.Theme.styles.small_tool_button
             anchors.verticalCenter: viewOrientationControl.verticalCenter
             onClicked: UM.Controller.rotateView("x", -90)
-            visible: base.width - allItemsWidth > 0
+            visible: true //base.width - allItemsWidth > 0
         }
     }
 
