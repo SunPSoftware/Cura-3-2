@@ -26,10 +26,10 @@
         "machine_heated_bed": { "default_value": true },
         "machine_use_extruder_offset_to_offset_coords": { "default_value": true },
         "machine_center_is_zero": { "default_value": false },
-        "machine_height": { "default_value": 150 },
+        "machine_height": { "default_value": 9.5 },
       "machine_gcode_flavor": { "default_value": "RepRap (Marlin/Sprinter)" },
-        "machine_depth": { "default_value": 145 },
-        "machine_width": { "default_value": 225 },
+        "machine_depth": { "default_value": 85 },
+        "machine_width": { "default_value": 175 },
         "machine_name": { "default_value": "SunP Mini" }
     }
 }
