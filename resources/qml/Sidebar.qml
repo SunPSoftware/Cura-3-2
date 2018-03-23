@@ -603,13 +603,13 @@ Rectangle
     Component.onCompleted:
     {
         modesListModel.append({
-            text: catalog.i18nc("@title:tab", "Recommended"),
-            tooltipText: catalog.i18nc("@tooltip", "<b>Recommended Print Setup</b><br/><br/>Print with the recommended settings for the selected printer, material and quality."),
+            text: catalog.i18nc("@title:tab", "Simple"),
+            //tooltipText: catalog.i18nc("@tooltip", "<b>Recommended Print Setup</b><br/><br/>Print with the recommended settings for the selected printer, material and quality."),
             item: sidebarSimple
         })
         modesListModel.append({
-            text: catalog.i18nc("@title:tab", "Custom"),
-            tooltipText: catalog.i18nc("@tooltip", "<b>Custom Print Setup</b><br/><br/>Print with finegrained control over every last bit of the slicing process."),
+            text: catalog.i18nc("@title:tab", "Advanced"),
+            //tooltipText: catalog.i18nc("@tooltip", "<b>Custom Print Setup</b><br/><br/>Print with finegrained control over every last bit of the slicing process."),
             item: sidebarAdvanced
         })
         sidebarContents.replace(modesListModel.get(base.currentModeIndex).item, { "immediate": true })
