@@ -9,8 +9,8 @@
         "file_formats": "text/x-gcode",
         "machine_extruder_trains":
         {
-          "0": "fdmextruder",
-          "1": "fdmextruder"
+          "0": "custom_extruder_1",
+          "1": "custom_extruder_1"
         },
         "platform_offset": [ 0, 0, 0]
     },
@@ -23,6 +23,7 @@
         "layer_height": { "default_value": 0.06 },
         "machine_extruder_count": { "default_value": 2 },
         "machine_heated_bed": { "default_value": true },
+        "machine_use_extruder_offset_to_offset_coords": { "default_value": true },
         "machine_center_is_zero": { "default_value": false },
         "machine_height": { "default_value": 150 },
       "machine_gcode_flavor": { "default_value": "RepRap (Marlin/Sprinter)" },
