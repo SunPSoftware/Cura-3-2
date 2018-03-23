@@ -9,8 +9,8 @@
         "file_formats": "text/x-gcode",
         "machine_extruder_trains":
         {
-          "0": "custom_extruder_1",
-          "1": "custom_extruder_1"
+          "0": "mini_extruder_1",
+          "1": "mini_extruder_2"
         },
         "platform_offset": [ 0, 0, 0]
     },
