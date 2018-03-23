@@ -11,7 +11,7 @@
         "machine_extruder_trains":
         {
           "0": "desktop_extruder_1",
-          "1": "desktop_extruder_2"
+          "1": "desktop_extruder_2",
           "2": "desktop_extruder_3"
         },
         "platform_offset": [ 0, 0, 0]
