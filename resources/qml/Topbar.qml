@@ -51,7 +51,7 @@ Rectangle
     {
         id: logo
         anchors.left: parent.left
-        anchors.leftMargin: UM.Theme.getSize("default_margin").width
+        anchors.leftMargin: leftMargin //UM.Theme.getSize("default_margin").width
         anchors.verticalCenter: parent.verticalCenter
 
         source: UM.Theme.getImage("logo");
@@ -168,8 +168,7 @@ Rectangle
         anchors {
             verticalCenter: parent.verticalCenter
             right: parent.right
-            //rightMargin: rightMargin
-			leftMargin: leftMargin
+            rightMargin: rightMargin
         }
 
         style: UM.Theme.styles.combobox
