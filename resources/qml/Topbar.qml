@@ -21,23 +21,23 @@ Rectangle
     property bool printerConnected: Cura.MachineManager.printerOutputDevices.length != 0
     property bool printerAcceptsCommands: printerConnected && Cura.MachineManager.printerOutputDevices[0].acceptsCommands
 
-    property int rightMargin: UM.Theme.getSize("sidebar").width + UM.Theme.getSize("default_margin").width;
+    property int leftMargin: UM.Theme.getSize("sidebar").width + UM.Theme.getSize("default_margin").width;
     property int allItemsWidth: 0;
 
     function updateMarginsAndSizes() {
         if (UM.Preferences.getValue("cura/sidebar_collapsed"))
         {
-            rightMargin = UM.Theme.getSize("default_margin").width;
+            leftMargin = UM.Theme.getSize("default_margin").width;
         }
         else
         {
-            rightMargin = UM.Theme.getSize("sidebar").width + UM.Theme.getSize("default_margin").width;
+            leftMargin = UM.Theme.getSize("sidebar").width + UM.Theme.getSize("default_margin").width;
         }
         allItemsWidth = (
             logo.width + UM.Theme.getSize("topbar_logo_right_margin").width +
             UM.Theme.getSize("topbar_logo_right_margin").width + stagesMenuContainer.width +
             UM.Theme.getSize("default_margin").width + viewModeButton.width +
-            rightMargin);
+            leftMargin);
     }
 
     UM.I18nCatalog
