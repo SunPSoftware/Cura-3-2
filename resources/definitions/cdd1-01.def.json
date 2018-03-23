@@ -4,8 +4,8 @@
 	"inherits": "fdmprinter",
 	"metadata": {
 		"visible": true,
-		"author": "SunP Biotech",
-		"manufacturer": "SunP Biotech",
+		"author": "SunP_Biotech",
+		"manufacturer": "SunP_Biotech",
 		"file_formats": "text/x-gcode",
 		"supports_usb_connection": true
 	},
@@ -17,17 +17,6 @@
 		"machine_depth": { "default_value": 149.86 },
 		"machine_height": { "default_value": 99.822 },
 		"layer_height": { "default_value": 0.2 },
-		"machine_nozzle_size": { "default_value": 0.4 },
-		"material_diameter": { "default_value": 1.75 },
-		"speed_print": { "default_value": 14 },
-		"speed_travel": { "value": "speed_print" },
-		"speed_infill": { "default_value": 14 },
-		"speed_wall": { "value": "speed_print * 0.7" },
-		"speed_topbottom": { "value": "speed_print * 0.7" },
-		"speed_layer_0": { "value": "speed_print * 0.7" },
-		"gantry_height": { "default_value": 0 },
-		"retraction_speed": { "default_value": 10 },
-		"retraction_amount": { "default_value": 2.5 },
 		"machine_gcode_flavor": { "default_value": "RepRap (Marlin/Sprinter)" },
 
 		"machine_start_gcode": {
