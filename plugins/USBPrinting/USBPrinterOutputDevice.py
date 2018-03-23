@@ -124,6 +124,12 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
     def _homeHead(self):
         self._sendCommand("G28 X")
         self._sendCommand("G28 Y")
+        
+    def _homeX(self):
+        self.sendCommand("G28 X")
+
+    def _homeY(self):
+        self.sendCommand("G28 Y")
 
     def _homeBed(self):
         self._sendCommand("G28 Z")
@@ -172,8 +178,24 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
 
     def _moveHead(self, x, y, z, speed):
         self._sendCommand("G91")
-        self._sendCommand("G0 X%s Y%s Z%s F%s" % (x, y, z, speed))
+        self._sendCommand("G0 X%f Y%f Z%f F%f" % (x, y, z, speed))
         self._sendCommand("G90")
+        
+	# Added to create manual extruder control 2017.11.03
+    def _moveExtruder(self, e, speed):
+        self._sendCommand("G91")
+        self._sendCommand("G0 E%s F%s" % (e, speed))
+        self._sendCommand("G90")
+    # Added to allow for tool change 2017.11.07
+    def _changeTool(self, t):
+        self._sendCommand("T%s" % t)
+
+    ## Send a gcode to the machine 2017.12.05
+	#  Note that this is a relative move. 
+	#  /param com command to be sent
+	#  /sa _directGCode Implementation function
+    def _directGCode(self, com):
+        self._sendCommand(com)
 
     ##  Start a print based on a g-code.
     #   \param gcode_list List with gcode (strings).
