@@ -342,6 +342,30 @@ class PrinterOutputDevice(QObject, OutputDevice):
     #   This is an implementation function and should be overriden by children.
     def _homeHead(self):
         Logger.log("w", "_homeHead is not implemented by this output device")
+        
+    ##  Home the X of the connected printer
+    #   This function is "final" (do not re-implement)
+    #   /sa _homeX implementation function
+    @pyqtSlot()
+    def homeX(self):
+        self._homeX()
+
+    ##  Home the X of the connected printer
+    #   This is an implementation function and should be overriden by children.
+    def _homeX(self):
+        Logger.log("w", "_homeX is not implemented by this output device")
+
+    ##  Home the Y of the connected printer
+    #   This function is "final" (do not re-implement)
+    #   /sa _homeX implementation function
+    @pyqtSlot()
+    def homeY(self):
+        self._homeY()
+
+    ##  Home the Y of the connected printer
+    #   This is an implementation function and should be overriden by children.
+    def _homeY(self):
+        Logger.log("w", "_homeY is not implemented by this output device")
 
     ##  Home the bed of the connected printer
     #   This function is "final" (do not re-implement)
@@ -623,10 +647,37 @@ class PrinterOutputDevice(QObject, OutputDevice):
     #   /param z distance in z to move
     #   /param speed Speed by which it needs to move (in mm/minute)
     #   /sa _moveHead implementation function
-    @pyqtSlot("long", "long", "long")
-    @pyqtSlot("long", "long", "long", "long")
-    def moveHead(self, x = 0, y = 0, z = 0, speed = 3000):
-        self._moveHead(x, y, z, speed)
+    @pyqtSlot("float", "float", "float")
+    @pyqtSlot("float", "float", "float", "float")
+    def moveHead(self, x = 0.0, y = 0.0, z = 0.0, speed = 3000):
+        self._moveHead(float(x), float(y), float(z), speed)
+
+    ## Move the position of the extruder 2017.11.03
+	#  Note that this is a relative move. 
+	#  /param e distance in e to move
+	#  /param speed Speed by which it needs to move (in mm/sec)
+	#  /sa _moveExtruder Implementation function
+    @pyqtSlot("float")
+    @pyqtSlot("float", "float")
+    def moveExtruder(self, e = 0.0, speed = 3000):
+        self._moveExtruder(float(e),speed)
+
+    ## Move the position of the extruder 2017.11.03
+	#  Note that this is a relative move. 
+	#  /param e distance in e to move
+	#  /param speed Speed by which it needs to move (in mm/sec)
+	#  /sa _moveExtruder Implementation function
+    @pyqtSlot("int")
+    def changeTool(self, t):
+        self._changeTool(t)
+
+    ## Send a gcode to the machine 2017.12.05
+	#  Note that this is a relative move. 
+	#  /param com command to be sent
+	#  /sa _directGCode Implementation function
+    @pyqtSlot(str)
+    def directGCode(self, com):
+        self._directGCode(str.upper(com))
 
     ##  Implementation function of moveHead.
     #   /param x distance in x to move
@@ -636,6 +687,26 @@ class PrinterOutputDevice(QObject, OutputDevice):
     #   /sa moveHead
     def _moveHead(self, x, y, z, speed):
         Logger.log("w", "_moveHead is not implemented by this output device")
+        
+	##  Implementation function of moveExtruder.
+    #   /param e distance to move extruder
+    #   /param speed Speed by which it needs to move (in mm/minute)
+    #   /sa moveExtruder
+    def _moveExtruder(self, e, speed):
+        Logger.log("w", "_moveExtruder is not implemented by this output device")
+
+    ##  Implementation function of changeTool.
+    #   /param t tool to change to
+    #   /sa changeTool
+    def _changeTool(self,t):
+        Logger.log("w", "_changeTool is not implemented by this output device")
+
+    ## Send a gcode to the machine 2017.12.05
+	#  Note that this is a relative move. 
+	#  /param com command to be sent
+	#  /sa _directGCode Implementation function
+    def _directGCode(self, com):
+        Logger.log("w", "directGCode is not implemented by this output device")
 
     ##  Implementation function of setHeadPosition.
     #   /param x new x location of the head.

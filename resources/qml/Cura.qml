@@ -17,7 +17,7 @@ UM.MainWindow
     id: base
     //: Cura application window title
     title: catalog.i18nc("@title:window","SunPrint");
-    viewportRect: Qt.rect(sidebar.width, sidebar.width, (base.width - sidebar.width) / base.width, (base.width - sidebar.width) / base.width) //(base.width - sidebar.width) / base.width
+    viewportRect: Qt.rect(0, 0, 1.0, 1.0) //(base.width - sidebar.width) / base.width
     property bool showPrintMonitor: false
 
     // This connection is here to support legacy printer output devices that use the showPrintMonitor signal on Application to switch to the monitor stage
