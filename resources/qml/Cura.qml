@@ -431,7 +431,7 @@ UM.MainWindow
                     id: collapseSidebarAnimation
                     target: sidebar
                     properties: "x"
-                    to: -sidebar.wifth //base.width
+                    to: -sidebar.width //base.width
                     duration: 100
                 }
 
