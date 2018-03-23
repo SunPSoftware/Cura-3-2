@@ -23,6 +23,7 @@ Rectangle
 
     property int leftMargin: UM.Theme.getSize("sidebar").width + UM.Theme.getSize("default_margin").width;
     property int allItemsWidth: 0;
+	property int rightMargin: UM.Theme.getSize("default_margin").width;
 
     function updateMarginsAndSizes() {
         if (UM.Preferences.getValue("cura/sidebar_collapsed"))
