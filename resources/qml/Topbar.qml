@@ -168,7 +168,7 @@ Rectangle
         anchors {
             verticalCenter: parent.verticalCenter
             right: parent.right
-            rightMargin: rightMargin
+            //rightMargin: rightMargin
 			leftMargin: leftMargin
         }
 
