@@ -117,7 +117,7 @@ Rectangle
             style: UM.Theme.styles.small_tool_button
             anchors.verticalCenter: viewOrientationControl.verticalCenter
             onClicked:UM.Controller.rotateView("3d", 0)
-            visible: base.width - allItemsWidth - 4 * this.width > 0
+            visible: true //base.width - allItemsWidth - 4 * this.width > 0
         }
 
         // #2 Front view
