@@ -7,6 +7,11 @@
         "author": "SunP",
         "manufacturer": "SunP",
         "file_formats": "text/x-gcode",
+        "machine_extruder_trains":
+        {
+          "0": "fdmextruder",
+          "1": "fdmextruder"
+        },
         "platform_offset": [ 0, 0, 0]
     },
 
@@ -15,7 +20,7 @@
         "infill_sparse_density": { "default_value": 100 },
         "speed_travel": { "default_value": 150 },
         "material_diameter": { "default_value": 1.75 },
-        "layer_height": { "default_value": 0.15 },
+        "layer_height": { "default_value": 0.06 },
         "machine_extruder_count": { "default_value": 2 },
         "machine_heated_bed": { "default_value": true },
         "machine_center_is_zero": { "default_value": false },
