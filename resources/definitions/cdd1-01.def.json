@@ -1,6 +1,6 @@
 {
 	"version": 1,
-	"name": "Alpha-CP-D1-01",
+	"name": "Alpha-CP-D1-02",
 	"inherits": "fdmprinter",
 	"metadata": {
 		"visible": true,
@@ -16,7 +16,7 @@
 		"machine_extruder_count": { "default_value": 2 },
 		"speed_travel": { "default_value": 150 },
 		"material_diameter": { "default_value": 1.75 },
-		"machine_name": { "default_value": "Alpha-CP-D1-01" },
+		"machine_name": { "default_value": "Alpha-CP-D1-02" },
 		"machine_heated_bed": { "default_value": true },
 		"machine_width": { "default_value": 149.86 },
 		"machine_depth": { "default_value": 149.86 },

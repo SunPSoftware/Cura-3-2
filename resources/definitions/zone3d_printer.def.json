@@ -16,7 +16,7 @@
         "material_print_temperature": { "default_value": 260 },
         "layer_height": { "default_value": 0.14 },
         "speed_travel": { "default_value": 150 },
-        "machine_extruder_count": { "default_value": 1 },
+        "machine_extruder_count": { "default_value": 2 },
         "machine_heated_bed": { "default_value": true },
         "machine_center_is_zero": { "default_value": false },
         "machine_height": { "default_value": 210 },
