@@ -328,7 +328,7 @@ Column
             right: parent.right
             rightMargin: UM.Theme.getSize("sidebar_margin").width
         }
-
+		/*
         Item {
             height: UM.Theme.getSize("sidebar_setup").height
             anchors.right: parent.right
@@ -345,7 +345,7 @@ Column
                 color: UM.Theme.getColor("material_compatibility_warning")
                 visible: !Cura.MachineManager.isCurrentSetupSupported
             }
-
+			
             Label {
                 id: materialInfoLabel
                 wrapMode: Text.WordWrap
@@ -378,8 +378,8 @@ Column
                     }
                     onExited: base.hideTooltip();
                 }
-            }
-        }
+            } 
+        } */
     }
 
     UM.SettingPropertyProvider
