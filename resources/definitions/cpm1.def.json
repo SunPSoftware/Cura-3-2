@@ -5,6 +5,7 @@
     "metadata": {
         "visible": true,
         "author": "SunP",
+        "category": "SunP",
         "manufacturer": "SunP",
         "file_formats": "text/x-gcode",
         "machine_extruder_trains":
