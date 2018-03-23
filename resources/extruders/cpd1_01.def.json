@@ -4,7 +4,7 @@
     "name": "1",
     "inherits": "fdmextruder",
     "metadata": {
-        "machine": "cpd1",
+        "machine": "cpd1-02",
         "position": "0"
     },
 
