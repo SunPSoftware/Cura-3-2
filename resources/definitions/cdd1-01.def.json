@@ -8,11 +8,10 @@
         "category": "SunP",
         "manufacturer": "SunP",
         "file_formats": "text/x-gcode",
-        "machine_extruder_trains":
-        {
-          "0": "desktop_01_extruder_1",
-          "1": "desktop_01_extruder_2"
-        },
+      "machine_extruder_trains": {
+        "0": "desktop_01_extruder_1",
+        "1": "desktop_01_extruder_2"
+      },
         "platform_offset": [ 0, 0, 0]
     },
 
