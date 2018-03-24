@@ -1,10 +1,10 @@
 {
-    "id": "desktop_02_extruder_2",
+    "id": "desktop_01_extruder_2",
     "version": 2,
     "name": "2",
     "inherits": "fdmextruder",
     "metadata": {
-        "machine": "cpd1-02",
+        "machine": "cpd1-01",
         "position": "1"
     },
 

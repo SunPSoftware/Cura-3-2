@@ -1,5 +1,5 @@
 {
-    "id": "desktop_extruder_3",
+    "id": "desktop_02_extruder_3",
     "version": 2,
     "name": "3",
     "inherits": "fdmextruder",
