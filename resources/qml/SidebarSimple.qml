@@ -788,6 +788,7 @@ Item
                 }
             }
 			*/
+			/*
             Label
             {
                 id: supportExtruderLabel
@@ -866,6 +867,7 @@ Item
                 }
 
             }
+			*/
 			/*
             Label
             {
