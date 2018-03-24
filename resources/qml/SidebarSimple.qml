@@ -731,6 +731,7 @@ Item
             //
             //  Enable support
             //
+			/*
             Label
             {
                 id: enableSupportLabel
@@ -786,7 +787,7 @@ Item
                     }
                 }
             }
-
+			*/
             Label
             {
                 id: supportExtruderLabel
@@ -865,7 +866,7 @@ Item
                 }
 
             }
-
+			/*
             Label
             {
                 id: adhesionHelperLabel
@@ -934,7 +935,7 @@ Item
                     }
                 }
             }
-
+			*/
             ListModel
             {
                 id: extruderModel
