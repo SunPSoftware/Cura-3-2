@@ -31,6 +31,8 @@
 		"machine_gcode_flavor": { "default_value": "RepRap (Marlin/Sprinter)" },
 		"machine_depth": { "default_value": 80 },
 		"machine_width": { "default_value": 225 },
+		"suport_enable": { "default_value": false },
+		"adhesion_type": { "default_value": "none" },
 		"machine_name": { "default_value": "SunP Desktop 02" }
 	}
 }
