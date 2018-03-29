@@ -630,9 +630,9 @@ UM.PreferencesPage
                 visible: checkUpdatesCheckbox.visible || sendDataCheckbox.visible
                 text: catalog.i18nc("@label","Privacy")
             }
-
+			
             UM.TooltipArea {
-                visible: plugins.find("id", "UpdateChecker") > -1
+                visible: false //plugins.find("id", "UpdateChecker") > -1
                 width: childrenRect.width
                 height: visible ? childrenRect.height : 0
                 text: catalog.i18nc("@info:tooltip","Should Cura check for updates when the program is started?")
@@ -645,7 +645,7 @@ UM.PreferencesPage
                     onCheckedChanged: UM.Preferences.setValue("info/automatic_update_check", checked)
                 }
             }
-
+			
             UM.TooltipArea {
                 visible: plugins.find("id", "SliceInfoPlugin") > -1
                 width: childrenRect.width

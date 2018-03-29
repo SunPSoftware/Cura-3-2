@@ -36,8 +36,8 @@ class SliceInfo(Extension):
     def __init__(self):
         super().__init__()
         Application.getInstance().getOutputDeviceManager().writeStarted.connect(self._onWriteStarted)
-        Preferences.getInstance().addPreference("info/send_slice_info", True)
-        Preferences.getInstance().addPreference("info/asked_send_slice_info", False)
+        Preferences.getInstance().addPreference("info/send_slice_info", False)
+        Preferences.getInstance().addPreference("info/asked_send_slice_info", True)
 
         if not Preferences.getInstance().getValue("info/asked_send_slice_info"):
             self.send_slice_info_message = Message(catalog.i18nc("@info", "Cura collects anonymized usage statistics."),
