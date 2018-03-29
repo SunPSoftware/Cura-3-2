@@ -660,10 +660,11 @@ UM.PreferencesPage
                     onCheckedChanged: UM.Preferences.setValue("info/send_slice_info", checked)
                 }
             }
-
+			
             Item
             {
                 //: Spacer
+                visible: checkUpdatesCheckbox.visible || sendDataCheckbox.visible
                 height: UM.Theme.getSize("default_margin").height
                 width: UM.Theme.getSize("default_margin").height
             }
