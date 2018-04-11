@@ -3,7 +3,7 @@
     "name": "Custom FDM printer",
     "inherits": "fdmprinter",
     "metadata": {
-        "visible": true,
+        "visible": false,
         "author": "Ultimaker",
         "manufacturer": "Custom",
         "category": "Custom",
