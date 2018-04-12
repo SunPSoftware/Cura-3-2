@@ -231,7 +231,7 @@ Item
                         }
                     }
                 }
-				/*
+				
                 //Print speed slider
                 Item
                 {
@@ -351,7 +351,7 @@ Item
                         }
                     }
                 }
-
+				/*
                 Label
                 {
                     id: speedLabel
