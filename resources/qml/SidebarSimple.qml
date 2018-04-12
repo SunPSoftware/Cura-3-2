@@ -627,7 +627,7 @@ Item
                         }
                     }
                 }
-
+				/*
                 //  Gradual Support Infill Checkbox
                 CheckBox {
                     id: enableGradualInfillCheckBox
@@ -682,7 +682,7 @@ Item
                         color: UM.Theme.getColor("text")
                     }
                 }
-
+				*/
                 //  Infill list model for mapping icon
                 ListModel
                 {
