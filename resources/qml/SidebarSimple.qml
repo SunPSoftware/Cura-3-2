@@ -231,7 +231,7 @@ Item
                         }
                     }
                 }
-
+				/*
                 //Print speed slider
                 Item
                 {
@@ -365,7 +365,7 @@ Item
                     width: Math.round(UM.Theme.getSize("sidebar").width * 0.35)
                     elide: Text.ElideRight
                 }
-
+				*/
                 Label
                 {
                     anchors.bottom: speedLabel.bottom
