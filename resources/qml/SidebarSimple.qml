@@ -437,6 +437,7 @@ Item
                 anchors.top: qualityRow.bottom
                 anchors.topMargin: UM.Theme.getSize("sidebar_margin").height * 2
                 anchors.left: parent.left
+				visible: false
 
                 width: Math.round(UM.Theme.getSize("sidebar").width * .45) - UM.Theme.getSize("sidebar_margin").width
 
