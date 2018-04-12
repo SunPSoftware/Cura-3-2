@@ -464,6 +464,7 @@ Item
                 anchors.left: infillCellLeft.right
                 anchors.top: infillCellLeft.top
                 anchors.topMargin: UM.Theme.getSize("sidebar_margin").height
+				visible: false
 
                 Label {
                     id: selectedInfillRateText
@@ -485,7 +486,7 @@ Item
                     property: "value"
                     value: parseInt(infillDensity.properties.value)
                 }
-
+				
                 Slider
                 {
                     id: infillSlider
@@ -571,7 +572,7 @@ Item
                         }
                     }
                 }
-
+				
                 Rectangle
                 {
                     id: infillIcon
