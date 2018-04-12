@@ -426,7 +426,7 @@ Item
                     onExited: base.hideTooltip()
                 }
             }
-
+			/*
             //
             // Infill
             //
@@ -727,7 +727,7 @@ Item
                     }
                 }
             }
-
+			*/
             //
             //  Enable support
             //
