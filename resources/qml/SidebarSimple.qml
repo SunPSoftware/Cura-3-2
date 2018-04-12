@@ -365,7 +365,7 @@ Item
                     width: Math.round(UM.Theme.getSize("sidebar").width * 0.35)
                     elide: Text.ElideRight
                 }
-				*/
+				
                 Label
                 {
                     anchors.bottom: speedLabel.bottom
@@ -387,7 +387,7 @@ Item
                     color: (qualityModel.availableTotalTicks > 0) ? UM.Theme.getColor("quality_slider_available") : UM.Theme.getColor("quality_slider_unavailable")
                     horizontalAlignment: Text.AlignRight
                 }
-
+				*/
                 UM.SimpleButton
                 {
                     id: customisedSettings
