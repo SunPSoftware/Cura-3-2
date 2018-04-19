@@ -47,7 +47,7 @@ ToolButton
                 height: UM.Theme.getSize("standard_arrow").height
                 sourceSize.width: width
                 sourceSize.height: width
-                color: UM.Theme.getColor("text_emphasis")
+                color: UM.Theme.getColor("text_subtext")
                 source: UM.Theme.getIcon("arrow_bottom")
             }
             Label
