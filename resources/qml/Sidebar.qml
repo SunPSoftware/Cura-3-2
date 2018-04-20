@@ -335,8 +335,9 @@ Rectangle
         width: parent.width
         height: UM.Theme.getSize("sidebar_lining").height
         color: UM.Theme.getColor("sidebar_lining")
-        anchors.bottom: printSpecs.top
-        anchors.bottomMargin: Math.round(UM.Theme.getSize("sidebar_margin").height * 2 + UM.Theme.getSize("progressbar").height + UM.Theme.getFont("default_bold").pixelSize)
+        //anchors.bottom: printSpecs.top
+		anchors.top: saveButton.bottom
+        anchors.bottomMargin: Math.round(UM.Theme.getSize("sidebar_margin").height //Math.round(UM.Theme.getSize("sidebar_margin").height * 2 + UM.Theme.getSize("progressbar").height + UM.Theme.getFont("default_bold").pixelSize)
     }
 
     Item
