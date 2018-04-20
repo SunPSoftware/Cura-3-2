@@ -257,7 +257,7 @@ Rectangle
     {
         id: sidebarContents
 
-        anchors.bottom: footerSeparator.top
+        anchors.bottom: parent.bottem
         //anchors.top: settingsModeSelection.bottom
         anchors.top: footerSeparator.bottom
 		anchors.topMargin: UM.Theme.getSize("sidebar_margin").height
