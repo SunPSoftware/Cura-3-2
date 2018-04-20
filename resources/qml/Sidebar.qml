@@ -563,6 +563,7 @@ Rectangle
         implicitWidth: base.width
         //anchors.top: footerSeparator.bottom
         anchors.top: hideSettings ? machineSelection.bottom : headerSeparator.bottom
+		height: UM.Theme.getSize("sidebar_header").height
 		anchors.topMargin: UM.Theme.getSize("sidebar_margin").height
         //anchors.bottom: parent.bottom
         visible: !monitoringPrint
