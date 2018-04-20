@@ -1,5 +1,5 @@
 {
-    "name": "SunP Desktop 02",
+    "name": "SunP CP-D1-02",
     "version": 2,
     "inherits": "fdmprinter",
     "metadata": {
@@ -33,6 +33,6 @@
 		"machine_width": { "default_value": 225 },
 		"suport_enable": { "default_value": false },
 		"adhesion_type": { "default_value": "none" },
-		"machine_name": { "default_value": "SunP Desktop 02" }
+    "machine_name": { "default_value": "SunP CP-D1-02" }
 	}
 }

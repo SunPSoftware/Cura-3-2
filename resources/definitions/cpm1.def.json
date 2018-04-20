@@ -1,5 +1,5 @@
 {
-    "name": "SunP Mini",
+    "name": "SunP CP-M1",
     "version": 2,
     "inherits": "fdmprinter",
     "metadata": {
@@ -32,6 +32,6 @@
     "machine_width": { "default_value": 175 },
     "suport_enable": { "default_value": false },
     "adhesion_type": { "default_value": "none" },
-    "machine_name": { "default_value": "SunP Mini" }
+    "machine_name": { "default_value": "SunP CP-M1" }
   }
 }
