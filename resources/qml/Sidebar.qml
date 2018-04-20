@@ -335,10 +335,10 @@ Rectangle
         width: parent.width
         height: UM.Theme.getSize("sidebar_lining").height
         color: UM.Theme.getColor("sidebar_lining")
-        //anchors.bottom: printSpecs.top
-		anchors.top: saveButton.bottom
-        //anchors.bottomMargin: Math.round(UM.Theme.getSize("sidebar_margin").height * 2 + UM.Theme.getSize("progressbar").height + UM.Theme.getFont("default_bold").pixelSize)
-		anchors.topMargin: Math.round(UM.Theme.getSize("sidebar_margin").height
+        anchors.bottom: printSpecs.top
+		//anchors.top: saveButton.bottom
+        anchors.bottomMargin: Math.round(UM.Theme.getSize("sidebar_margin").height * 2 + UM.Theme.getSize("progressbar").height + UM.Theme.getFont("default_bold").pixelSize)
+		//anchors.topMargin: Math.round(UM.Theme.getSize("sidebar_margin").height
     }
 
     Item
@@ -566,7 +566,7 @@ Rectangle
         anchors.top: hideSettings ? machineSelection.bottom : headerSeparator.bottom
 		height: UM.Theme.getSize("sidebar_header").height
 		anchors.topMargin: UM.Theme.getSize("sidebar_margin").height
-        //anchors.bottom: parent.bottom
+        anchors.bottom: parent.bottom
         visible: !monitoringPrint
     }
 
