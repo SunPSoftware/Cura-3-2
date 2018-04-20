@@ -562,7 +562,7 @@ Rectangle
         //anchors.top: footerSeparator.bottom
         anchors.top: hideSettings ? machineSelection.bottom : headerSeparator.bottom
 		anchors.topMargin: UM.Theme.getSize("sidebar_margin").height
-        anchors.bottom: parent.bottom
+        //anchors.bottom: parent.bottom
         visible: !monitoringPrint
     }
 
