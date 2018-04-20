@@ -258,8 +258,9 @@ Rectangle
         id: sidebarContents
 
         anchors.bottom: footerSeparator.top
-        anchors.top: settingsModeSelection.bottom
-        anchors.topMargin: UM.Theme.getSize("sidebar_margin").height
+        //anchors.top: settingsModeSelection.bottom
+        anchors.top: footerSeparator.bottom
+		anchors.topMargin: UM.Theme.getSize("sidebar_margin").height
         anchors.left: base.left
         anchors.right: base.right
         visible: !monitoringPrint && !hideSettings
