@@ -153,8 +153,9 @@ Rectangle
         anchors.top:
         {
             //if (settingsModeLabel.contentWidth >= parent.width - width - UM.Theme.getSize("sidebar_margin").width * 2)
-			if (saveButton.contentWidth >= parent.width - width - UM.Theme.getSize("sidebar_margin").width * 2)
-            {
+			//if (saveButton.contentWidth >= parent.width - width - UM.Theme.getSize("sidebar_margin").width * 2)
+            if (true)
+			{
                 //return settingsModeLabel.bottom;
 				return saveButton.bottom;
             }
