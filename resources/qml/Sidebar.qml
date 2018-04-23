@@ -97,7 +97,8 @@ Rectangle
         id: header
         width: parent.width
         visible: !hideSettings && (machineExtruderCount.properties.value > 1 || Cura.MachineManager.hasMaterials || Cura.MachineManager.hasVariants) && !monitoringPrint
-        anchors.top: machineSelection.bottom
+        //anchors.top: machineSelection.bottom
+		anchors.top: footerSeparator.bottom
 
         onShowTooltip: base.showTooltip(item, location, text)
         onHideTooltip: base.hideTooltip()
@@ -129,7 +130,8 @@ Rectangle
         renderType: Text.NativeRendering
         anchors.left: parent.left
         anchors.leftMargin: UM.Theme.getSize("sidebar_margin").width
-        anchors.top: hideSettings ? machineSelection.bottom : headerSeparator.bottom
+        //anchors.top: hideSettings ? machineSelection.bottom : headerSeparator.bottom
+		anchors.top: hideSettings ? footerSeparator.bottom : headerSeparator.bottom
         anchors.topMargin: UM.Theme.getSize("sidebar_margin").height
         width: Math.round(parent.width * 0.45)
         font: UM.Theme.getFont("large")
@@ -282,8 +284,10 @@ Rectangle
     Loader
     {
         id: controlItem
-        anchors.bottom: footerSeparator.top
-        anchors.top: monitoringPrint ? machineSelection.bottom : headerSeparator.bottom
+        //anchors.bottom: footerSeparator.top
+		anchors.bottom: parent.bottom
+        //anchors.top: monitoringPrint ? machineSelection.bottom : headerSeparator.bottom
+		anchors.top: monitoringPrint ? footerSeparator.bottom : headerSeparator.bottom
         anchors.left: base.left
         anchors.right: base.right
         sourceComponent:
@@ -301,8 +305,10 @@ Rectangle
 
     Loader
     {
-        anchors.bottom: footerSeparator.top
-        anchors.top: monitoringPrint ? machineSelection.bottom : headerSeparator.bottom
+        //anchors.bottom: footerSeparator.top
+		anchors.bottom: parent.bottom
+        //anchors.top: monitoringPrint ? machineSelection.bottom : headerSeparator.bottom
+        anchors.top: monitoringPrint ? footerSeparator.bottom : headerSeparator.bottom
         anchors.left: base.left
         anchors.right: base.right
         source:
@@ -330,7 +336,8 @@ Rectangle
         width: parent.width
         height: UM.Theme.getSize("sidebar_lining").height
         color: UM.Theme.getColor("sidebar_lining")
-        anchors.bottom: printSpecs.top
+        //anchors.bottom: printSpecs.top
+		anchors.top: printSpecs.bottom
         anchors.bottomMargin: Math.round(UM.Theme.getSize("sidebar_margin").height * 2 + UM.Theme.getSize("progressbar").height + UM.Theme.getFont("default_bold").pixelSize)
     }
 
@@ -338,8 +345,9 @@ Rectangle
     {
         id: printSpecs
         anchors.left: parent.left
-        anchors.bottom: parent.bottom
-        anchors.leftMargin: UM.Theme.getSize("sidebar_margin").width
+        //anchors.bottom: parent.bottom
+        anchors.top: machineSelection.bottom
+		anchors.leftMargin: UM.Theme.getSize("sidebar_margin").width
         anchors.bottomMargin: UM.Theme.getSize("sidebar_margin").height
         height: timeDetails.height + costSpec.height
         width: base.width - (saveButton.buttonRowWidth + UM.Theme.getSize("sidebar_margin").width)
@@ -480,8 +488,9 @@ Rectangle
 
             id: costSpec
             anchors.left: parent.left
-            anchors.bottom: parent.bottom
-            font: UM.Theme.getFont("very_small")
+            //anchors.bottom: parent.bottom
+            anchors.bottom: footerSeparator.top
+			font: UM.Theme.getFont("very_small")
             renderType: Text.NativeRendering
             color: UM.Theme.getColor("text_subtext")
             elide: Text.ElideMiddle
@@ -555,20 +564,24 @@ Rectangle
     {
         id: saveButton
         implicitWidth: base.width
-        anchors.top: footerSeparator.bottom
-        anchors.topMargin: UM.Theme.getSize("sidebar_margin").height
-        anchors.bottom: parent.bottom
-        visible: !monitoringPrint
+        //anchors.top: footerSeparator.bottom
+        anchors.top: machineSelection.bottom
+		anchors.topMargin: UM.Theme.getSize("sidebar_margin").height
+        //anchors.bottom: parent.bottom
+        anchors.bottom: footerSeparator.top
+		visible: !monitoringPrint
     }
 
     MonitorButton
     {
         id: monitorButton
         implicitWidth: base.width
-        anchors.top: footerSeparator.bottom
+        //anchors.top: footerSeparator.bottom
+		anchors.top: machineSelection.bottom
         anchors.topMargin: UM.Theme.getSize("sidebar_margin").height
-        anchors.bottom: parent.bottom
-        visible: monitoringPrint
+        //anchors.bottom: parent.bottom
+        anchors.bottom: footerSeparator.top
+		visible: monitoringPrint
     }
 
     SidebarTooltip
