@@ -346,7 +346,7 @@ Rectangle
         id: printSpecs
         anchors.left: parent.left
         //anchors.bottom: parent.bottom
-        anchors.top: machineSelection.bottom
+        anchors.top: monitoringPrint ? footerSeparator.bottom : headerSeparator.bottom
 		anchors.leftMargin: UM.Theme.getSize("sidebar_margin").width
         //anchors.bottomMargin: UM.Theme.getSize("sidebar_margin").height
         anchors.topMargin: UM.Theme.getSize("sidebar_margin").height
