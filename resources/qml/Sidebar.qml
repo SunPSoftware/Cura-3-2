@@ -129,8 +129,7 @@ Rectangle
         renderType: Text.NativeRendering
         anchors.left: parent.left
         anchors.leftMargin: UM.Theme.getSize("sidebar_margin").width
-        //anchors.top: hideSettings ? machineSelection.bottom : headerSeparator.bottom
-        anchors.top: footerSeparator.bottom
+        anchors.top: hideSettings ? machineSelection.bottom : headerSeparator.bottom
         anchors.topMargin: UM.Theme.getSize("sidebar_margin").height
         width: Math.round(parent.width * 0.45)
         font: UM.Theme.getFont("large")
@@ -152,12 +151,9 @@ Rectangle
         anchors.topMargin: UM.Theme.getSize("sidebar_margin").height
         anchors.top:
         {
-            //if (settingsModeLabel.contentWidth >= parent.width - width - UM.Theme.getSize("sidebar_margin").width * 2)
-			//if (saveButton.contentWidth >= parent.width - width - UM.Theme.getSize("sidebar_margin").width * 2)
-            if (true)
-			{
-                //return settingsModeLabel.bottom;
-				return saveButton.bottom;
+            if (settingsModeLabel.contentWidth >= parent.width - width - UM.Theme.getSize("sidebar_margin").width * 2)
+            {
+                return settingsModeLabel.bottom;
             }
             else
             {
@@ -257,10 +253,9 @@ Rectangle
     {
         id: sidebarContents
 
-        anchors.bottom: parent.bottem
-        //anchors.top: settingsModeSelection.bottom
-        anchors.top: footerSeparator.bottom
-		anchors.topMargin: UM.Theme.getSize("sidebar_margin").height
+        anchors.bottom: footerSeparator.top
+        anchors.top: settingsModeSelection.bottom
+        anchors.topMargin: UM.Theme.getSize("sidebar_margin").height
         anchors.left: base.left
         anchors.right: base.right
         visible: !monitoringPrint && !hideSettings
@@ -336,9 +331,7 @@ Rectangle
         height: UM.Theme.getSize("sidebar_lining").height
         color: UM.Theme.getColor("sidebar_lining")
         anchors.bottom: printSpecs.top
-		//anchors.top: saveButton.bottom
         anchors.bottomMargin: Math.round(UM.Theme.getSize("sidebar_margin").height * 2 + UM.Theme.getSize("progressbar").height + UM.Theme.getFont("default_bold").pixelSize)
-		//anchors.topMargin: Math.round(UM.Theme.getSize("sidebar_margin").height
     }
 
     Item
@@ -562,10 +555,8 @@ Rectangle
     {
         id: saveButton
         implicitWidth: base.width
-        //anchors.top: footerSeparator.bottom
-        anchors.top: hideSettings ? machineSelection.bottom : headerSeparator.bottom
-		height: UM.Theme.getSize("sidebar_header").height
-		anchors.topMargin: UM.Theme.getSize("sidebar_margin").height
+        anchors.top: footerSeparator.bottom
+        anchors.topMargin: UM.Theme.getSize("sidebar_margin").height
         anchors.bottom: parent.bottom
         visible: !monitoringPrint
     }
