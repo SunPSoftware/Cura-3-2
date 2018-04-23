@@ -348,7 +348,8 @@ Rectangle
         //anchors.bottom: parent.bottom
         anchors.top: machineSelection.bottom
 		anchors.leftMargin: UM.Theme.getSize("sidebar_margin").width
-        anchors.bottomMargin: UM.Theme.getSize("sidebar_margin").height
+        //anchors.bottomMargin: UM.Theme.getSize("sidebar_margin").height
+        anchors.topMargin: UM.Theme.getSize("sidebar_margin").height
         height: timeDetails.height + costSpec.height
         width: base.width - (saveButton.buttonRowWidth + UM.Theme.getSize("sidebar_margin").width)
         visible: !monitoringPrint
