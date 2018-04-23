@@ -131,7 +131,7 @@ Rectangle
         anchors.left: parent.left
         anchors.leftMargin: UM.Theme.getSize("sidebar_margin").width
         //anchors.top: hideSettings ? machineSelection.bottom : headerSeparator.bottom
-		anchors.top: hideSettings ? footerSeparator.bottom : headerSeparator.bottom
+		anchors.top: hideSettings || monitoringPrint ? footerSeparator.bottom : headerSeparator.bottom
         anchors.topMargin: UM.Theme.getSize("sidebar_margin").height
         width: Math.round(parent.width * 0.45)
         font: UM.Theme.getFont("large")
