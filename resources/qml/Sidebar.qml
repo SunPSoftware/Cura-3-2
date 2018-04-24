@@ -286,6 +286,7 @@ Rectangle
         id: controlItem
         //anchors.bottom: footerSeparator.top
 		anchors.bottom: base.bottom
+		anchors.bottomMargin: UM.Theme.getSize("sidebar_margin").height
         //anchors.top: monitoringPrint ? machineSelection.bottom : headerSeparator.bottom
 		anchors.top: monitoringPrint ? footerSeparator.bottom : headerSeparator.bottom
         anchors.left: base.left
@@ -307,6 +308,7 @@ Rectangle
     {
         //anchors.bottom: footerSeparator.top
 		anchors.bottom: base.bottom
+		anchors.bottomMargin: UM.Theme.getSize("sidebar_margin").height
         //anchors.top: monitoringPrint ? machineSelection.bottom : headerSeparator.bottom
         anchors.top: monitoringPrint ? footerSeparator.bottom : headerSeparator.bottom
         anchors.left: base.left
