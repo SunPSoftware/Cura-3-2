@@ -490,7 +490,7 @@ Rectangle
             id: costSpec
             anchors.left: parent.left
             //anchors.bottom: parent.bottom
-            anchors.bottom: parent.top
+            anchors.bottom: printSpecs.bottom
 			font: UM.Theme.getFont("very_small")
             renderType: Text.NativeRendering
             color: UM.Theme.getColor("text_subtext")
