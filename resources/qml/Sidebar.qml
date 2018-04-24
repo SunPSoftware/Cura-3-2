@@ -350,7 +350,7 @@ Rectangle
 		anchors.leftMargin: UM.Theme.getSize("sidebar_margin").width
         //anchors.bottomMargin: UM.Theme.getSize("sidebar_margin").height
         anchors.topMargin: UM.Theme.getSize("sidebar_margin").height
-        height: (timeDetails.height + costSpec.height) * 3 // + saveButton.height
+        height: (timeDetails.height + costSpec.height) * 2.5 // + saveButton.height
         width: base.width - (saveButton.buttonRowWidth + UM.Theme.getSize("sidebar_margin").width)
         visible: !monitoringPrint
         clip: true
@@ -490,7 +490,7 @@ Rectangle
             id: costSpec
             anchors.left: parent.left
             //anchors.bottom: parent.bottom
-            anchors.bottom: footerSeparator.top
+            anchors.bottom: parent.top
 			font: UM.Theme.getFont("very_small")
             renderType: Text.NativeRendering
             color: UM.Theme.getColor("text_subtext")
