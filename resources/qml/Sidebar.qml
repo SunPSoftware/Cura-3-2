@@ -350,7 +350,7 @@ Rectangle
 		anchors.leftMargin: UM.Theme.getSize("sidebar_margin").width
         //anchors.bottomMargin: UM.Theme.getSize("sidebar_margin").height
         anchors.topMargin: UM.Theme.getSize("sidebar_margin").height
-        height: timeDetails.height + costSpec.height
+        height: (timeDetails.height + costSpec.height) * 2
         width: base.width - (saveButton.buttonRowWidth + UM.Theme.getSize("sidebar_margin").width)
         visible: !monitoringPrint
         clip: true
