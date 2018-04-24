@@ -306,7 +306,7 @@ Rectangle
     Loader
     {
         //anchors.bottom: footerSeparator.top
-		anchors.bottom: parent.bottom
+		anchors.bottom: base.bottom
         //anchors.top: monitoringPrint ? machineSelection.bottom : headerSeparator.bottom
         anchors.top: monitoringPrint ? footerSeparator.bottom : headerSeparator.bottom
         anchors.left: base.left
