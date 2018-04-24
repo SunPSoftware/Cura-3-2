@@ -285,7 +285,7 @@ Rectangle
     {
         id: controlItem
         //anchors.bottom: footerSeparator.top
-		anchors.bottom: parent.bottom
+		anchors.bottom: base.bottom
         //anchors.top: monitoringPrint ? machineSelection.bottom : headerSeparator.bottom
 		anchors.top: monitoringPrint ? footerSeparator.bottom : headerSeparator.bottom
         anchors.left: base.left
@@ -491,6 +491,7 @@ Rectangle
             anchors.left: parent.left
             //anchors.bottom: parent.bottom
             anchors.bottom: printSpecs.bottom
+			anchors.bottomMargin: UM.Theme.getSize("sidebar_margin").height
 			font: UM.Theme.getFont("very_small")
             renderType: Text.NativeRendering
             color: UM.Theme.getColor("text_subtext")
