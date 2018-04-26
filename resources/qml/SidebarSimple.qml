@@ -228,9 +228,9 @@ Item
                                 } else if (index == 0) {
                                     return Math.round(base.width * 0.55 / qualityModel.totalTicks) * index
                                 } else if (index == qualityModel.totalTicks) {
-                                    return Math.round(base.width * 0.55 / qualityModel.totalTicks) * index - height
+                                    return Math.round(base.width * 0.55 / qualityModel.totalTicks) * index - width
                                 } else {
-                                    return Math.round((base.width * 0.55 / qualityModel.totalTicks) * index - (height / 2))
+                                    return Math.round((base.width * 0.55 / qualityModel.totalTicks) * index - (width / 2))
                                 }
                             }
                         }
