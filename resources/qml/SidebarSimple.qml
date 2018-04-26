@@ -224,7 +224,7 @@ Item
                                 // Make sure the text aligns correctly with each tick
                                 if (qualityModel.totalTicks == 0) {
                                     // If there is only one tick, align it centrally
-                                    return Math.round(((base.width * 0.55) - width) / 2)
+                                    return Math.round(((base.width * 0.55) + height) / 2)
                                 } else if (index == 0) {
                                     return Math.round(base.width * 0.55 / qualityModel.totalTicks) * index
                                 } else if (index == qualityModel.totalTicks) {
