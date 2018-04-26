@@ -188,8 +188,8 @@ Item
 
                         Label
                         {
-                            //anchors.verticalCenter: parent.verticalCenter
-                            anchors.horizontalCenter: parent.horizontalCenter
+                            anchors.verticalCenter: parent.verticalCenter
+                            //anchors.horizontalCenter: parent.horizontalCenter
                             anchors.top: parent.top
                             anchors.topMargin: Math.round(UM.Theme.getSize("sidebar_margin").height / 2)
                             color: (Cura.MachineManager.activeMachine != null && Cura.ProfilesModel.getItem(index).available) ? UM.Theme.getColor("quality_slider_available") : UM.Theme.getColor("quality_slider_unavailable")
@@ -228,9 +228,9 @@ Item
                                 } else if (index == 0) {
                                     return Math.round(base.width * 0.55 / qualityModel.totalTicks) * index
                                 } else if (index == qualityModel.totalTicks) {
-                                    return Math.round(base.width * 0.55 / qualityModel.totalTicks) * index - width
+                                    return Math.round(base.width * 0.55 / qualityModel.totalTicks) * index //- width
                                 } else {
-                                    return Math.round((base.width * 0.55 / qualityModel.totalTicks) * index - (width / 2))
+                                    return Math.round((base.width * 0.55 / qualityModel.totalTicks) * index //- (width / 2))
                                 }
                             }
                         }
