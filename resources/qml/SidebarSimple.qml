@@ -172,7 +172,7 @@ Item
                 Label
                 {
                     id: qualityRowTitle
-                    text: catalog.i18nc("@label", "Layer Height")
+                    text: catalog.i18nc("@label", "Layer Height (mm)")
                     font: UM.Theme.getFont("default")
                     color: UM.Theme.getColor("text")
                 }
@@ -180,7 +180,7 @@ Item
                 // Show titles for the each quality slider ticks
                 Item
                 {
-                    y: -5;
+                    y: 5;
                     anchors.left: speedSlider.left
                     Repeater
                     {
