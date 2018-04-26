@@ -188,9 +188,9 @@ Item
 
                         Label
                         {
-                            //anchors.verticalCenter: parent.verticalCenter
+                            anchors.verticalCenter: parent.verticalCenter
                             anchors.top: parent.top
-                            anchors.topMargin: Math.round(UM.Theme.getSize("sidebar_margin").height / 2)
+                            //anchors.topMargin: Math.round(UM.Theme.getSize("sidebar_margin").height / 2)
                             color: (Cura.MachineManager.activeMachine != null && Cura.ProfilesModel.getItem(index).available) ? UM.Theme.getColor("quality_slider_available") : UM.Theme.getColor("quality_slider_unavailable")
                             text:
                             {
