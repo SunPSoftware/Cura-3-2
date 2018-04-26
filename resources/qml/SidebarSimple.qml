@@ -216,7 +216,7 @@ Item
                             }
 
 							transform: Rotation {
-								angle: 90
+								angle: 270
 							} // rotate this text item
 
                             x: {
