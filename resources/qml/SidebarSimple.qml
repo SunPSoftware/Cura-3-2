@@ -215,6 +215,10 @@ Item
                                 return result
                             }
 
+							transform: Rotation {
+								angle: 90
+							} // rotate this text item
+
                             x: {
                                 // Make sure the text aligns correctly with each tick
                                 if (qualityModel.totalTicks == 0) {
