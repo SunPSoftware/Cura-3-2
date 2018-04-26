@@ -180,7 +180,7 @@ Item
                 // Show titles for the each quality slider ticks
                 Item
                 {
-                    y: 5;
+                    y: 15;
                     anchors.left: speedSlider.left
                     Repeater
                     {
