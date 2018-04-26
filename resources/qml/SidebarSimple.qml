@@ -226,7 +226,7 @@ Item
                                     // If there is only one tick, align it centrally
                                     return Math.round(((base.width * 0.55) + height) / 2)
                                 } else if (index == 0) {
-                                    return Math.round(base.width * 0.55 / qualityModel.totalTicks) * index
+                                    return Math.round(base.width * 0.55 / qualityModel.totalTicks) * index + height
                                 } else if (index == qualityModel.totalTicks) {
                                     return Math.round(base.width * 0.55 / qualityModel.totalTicks) * index + height
                                 } else {
