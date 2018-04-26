@@ -180,7 +180,7 @@ Item
                 // Show titles for the each quality slider ticks
                 Item
                 {
-                    y: 15;
+                    y: 20;
                     anchors.left: speedSlider.left
                     Repeater
                     {
@@ -188,7 +188,7 @@ Item
 
                         Label
                         {
-                            anchors.verticalCenter: parent.verticalCenter
+                            //anchors.verticalCenter: parent.verticalCenter
                             anchors.top: parent.top
                             anchors.topMargin: Math.round(UM.Theme.getSize("sidebar_margin").height / 2)
                             color: (Cura.MachineManager.activeMachine != null && Cura.ProfilesModel.getItem(index).available) ? UM.Theme.getColor("quality_slider_available") : UM.Theme.getColor("quality_slider_unavailable")
