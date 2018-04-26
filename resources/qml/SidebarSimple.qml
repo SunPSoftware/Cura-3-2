@@ -146,7 +146,7 @@ Item
                     }
 
                     function calculateSliderStepWidth (totalTicks) {
-                        qualityModel.qualitySliderStepWidth = totalTicks != 0 ? Math.round((base.width * 0.55) / (totalTicks)) : 0
+                        qualityModel.qualitySliderStepWidth = totalTicks != 0 ? (base.width * 0.55) / (totalTicks) : 0
                     }
 
                     function calculateSliderMargins (availableMin, availableMax, totalTicks) {
