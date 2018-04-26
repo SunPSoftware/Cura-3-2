@@ -21,7 +21,7 @@
     "infill_sparse_density": { "default_value": 100 },
     "speed_travel": { "default_value": 150 },
     "material_diameter": { "default_value": 14 },
-    "layer_height": { "default_value": 0.06 },
+    "layer_height": { "default_value": 0.1 },
     "machine_extruder_count": { "default_value": 2 },
     "machine_heated_bed": { "default_value": true },
     "machine_use_extruder_offset_to_offset_coords": { "default_value": true },
