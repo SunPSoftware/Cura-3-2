@@ -1459,6 +1459,7 @@
                     "label": "Infill Density",
                     "description": "Adjusts the density of infill of the print.",
                     "unit": "%",
+                    "enabled" :  false,
                     "type": "float",
                     "default_value": 100,
                     "minimum_value": "0",
@@ -1657,6 +1658,7 @@
                 {
                     "label": "Gradual Infill Steps",
                     "description": "Number of times to reduce the infill density by half when getting further below top surfaces. Areas which are closer to top surfaces get a higher density, up to the Infill Density.",
+                    "enabled" :  false,
                     "default_value": 0,
                     "type": "int",
                     "minimum_value": "0",
@@ -1995,6 +1997,7 @@
                     "label": "Enable Retraction",
                     "description": "Retract the filament when the nozzle is moving over a non-printed area. ",
                     "type": "bool",
+                    "enabled" :  false,
                     "default_value": true,
                     "settable_per_mesh": false,
                     "settable_per_extruder": true
@@ -3255,6 +3258,7 @@
                     "label": "Enable Print Cooling",
                     "description": "Enables the print cooling fans while printing. The fans improve print quality on layers with short layer times and bridging / overhangs.",
                     "type": "bool",
+                    "enabled" :  false,
                     "default_value": false,
                     "settable_per_mesh": false,
                     "settable_per_extruder": true
@@ -3404,6 +3408,7 @@
                     "label": "Generate Support",
                     "description": "Generate structures to support parts of the model which have overhangs. Without these structures, such parts would collapse during printing.",
                     "type": "bool",
+                    "enabled" :  false,
                     "default_value": false,
                     "settable_per_mesh": true,
                     "settable_per_extruder": false
@@ -4110,6 +4115,7 @@
                     "label": "Build Plate Adhesion Type",
                     "description": "Different options that help to improve both priming your extrusion and adhesion to the build plate. Brim adds a single layer flat area around the base of your model to prevent warping. Raft adds a thick grid with a roof below the model. Skirt is a line printed around the model, but not connected to the model.",
                     "type": "enum",
+                    "enabled" :  false,
                     "options":
                     {
                         "skirt": "Skirt",
@@ -4699,7 +4705,7 @@
                     "label": "Enable Prime Tower",
                     "description": "Print a tower next to the print which serves to prime the material after each nozzle switch.",
                     "type": "bool",
-                    "enabled": "machine_extruder_count > 1",
+                    "enabled": false,//"machine_extruder_count > 1",
                     "default_value": false,
                     "resolve": "any(extruderValues('prime_tower_enable'))",
                     "settable_per_mesh": false,
