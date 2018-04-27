@@ -859,7 +859,8 @@
             "label": "Shell",
             "icon": "category_shell",
             "description": "Shell",
-            "type": "category",
+          "type": "category",
+          "enabled":  false
             "children":
             {
                 "wall_extruder_nr":
