@@ -116,7 +116,7 @@ UM.PreferencesPage
                     id: definitionsModel
                     containerId: Cura.MachineManager.activeDefinitionId
                     showAll: true
-                    exclude: ["machine_settings", "command_line_settings"]
+                    exclude: ["machine_settings", "command_line_settings", "shell", "infill"]
                     showAncestors: true
                     expanded: ["*"]
                     visibilityHandler: UM.SettingPreferenceVisibilityHandler { }
