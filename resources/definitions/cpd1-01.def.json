@@ -31,6 +31,24 @@
     "machine_width": { "default_value": 225 },
     "suport_enable": { "default_value": false },
     "adhesion_type": { "default_value": "none" },
-    "machine_name": { "default_value": "SunP CP-D1-01" }
+    "machine_name": { "default_value": "SunP CP-D1-01" },
+    "machine_start_gcode": {
+      "default_value": "G28 ;Home\nG1 Z15.0 F6000 ;Move the platform down 15mm\n;Prime the extruder\nG92 E0\nG1 F200 E3\nG92 E0"
+    },
+    "machine_end_gcode": {
+      "default_value": "M104 S0\nM140 S0\n;Retract the filament\nG92 E1\nG1 E-1 F300\nG28 X0 Y0\nM84"
+    },
+    "machine_nozzle_size": {
+      "default_value": 0.4
+    },
+    "machine_max_feedrate_x": {
+      "default_value": 5
+    },
+    "machine_max_feedrate_y": {
+      "default_value": 5
+    },
+    "layer_height_0": {
+      "default_value": 0.3
+    }
   }
 }
