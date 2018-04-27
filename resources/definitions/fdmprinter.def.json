@@ -988,7 +988,7 @@
                     "label": "Top/Bottom Thickness",
                     "description": "The thickness of the top/bottom layers in the print. This value divided by the layer height defines the number of top/bottom layers.",
                   "unit": "mm",
-                  "enabled" :  false
+                  "enabled" :  false,
                     "default_value": 0.01,
                     "minimum_value": "0",
                     "minimum_value_warning": "0.6",
