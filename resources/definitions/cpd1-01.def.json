@@ -18,7 +18,7 @@
   "overrides": {
     "prime_tower_size": { "default_value": 10.0 },
     "infill_sparse_density": { "default_value": 100 },
-    "speed_travel": { "default_value": 150 },
+    "speed_travel": { "default_value": 5 },
     "material_diameter": { "default_value": 14 },
     "layer_height": { "default_value": 0.1 },
     "machine_extruder_count": { "default_value": 2 },
