@@ -908,7 +908,7 @@
                     "description": "The thickness of the walls in the horizontal direction. This value divided by the wall line width defines the number of walls.",
                   "unit": "mm",
                   "enabled":  false,
-                    "default_value": 0.8,
+                    "default_value": 0.01,
                     "minimum_value": "0",
                     "minimum_value_warning": "line_width",
                     "maximum_value_warning": "10 * line_width",
@@ -987,8 +987,9 @@
                 {
                     "label": "Top/Bottom Thickness",
                     "description": "The thickness of the top/bottom layers in the print. This value divided by the layer height defines the number of top/bottom layers.",
-                    "unit": "mm",
-                    "default_value": 0.8,
+                  "unit": "mm",
+                  "enabled" :  false
+                    "default_value": 0.01,
                     "minimum_value": "0",
                     "minimum_value_warning": "0.6",
                     "maximum_value": "machine_height",
