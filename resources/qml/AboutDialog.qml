@@ -66,7 +66,7 @@ UM.Dialog
         width: parent.width
 
         //: About dialog application author note
-        text: catalog.i18nc("@info:credit","SunPrint is powered by Ultimaker's Cura.\nSunPrint proudly uses the following open source projects:")
+        text: catalog.i18nc("@info:credit","SunPrint is powered by Ultimaker's Cura")
         font: UM.Theme.getFont("system")
         wrapMode: Text.WordWrap
         anchors.top: description.bottom
