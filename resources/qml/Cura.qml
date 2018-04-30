@@ -262,7 +262,7 @@ UM.MainWindow
 
                 MenuItem { action: Cura.Actions.preferences; }
             }
-			/*
+			
             Menu
             {
                 //: Help menu
@@ -274,7 +274,7 @@ UM.MainWindow
                 MenuSeparator { }
                 MenuItem { action: Cura.Actions.about; }
             }
-			*/
+			
         }
 
         UM.SettingPropertyProvider
