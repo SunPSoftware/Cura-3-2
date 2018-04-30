@@ -60,7 +60,7 @@ UM.Dialog
         anchors.topMargin: UM.Theme.getSize("default_margin").height
     }
 
-    /*Label
+    Label
     {
         id: creditsNotes
         width: parent.width
@@ -72,7 +72,7 @@ UM.Dialog
         anchors.top: description.bottom
         anchors.topMargin: UM.Theme.getSize("default_margin").height
     }
-
+	/*
     ScrollView
     {
         anchors.top: creditsNotes.bottom
