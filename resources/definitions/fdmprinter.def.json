@@ -1841,7 +1841,7 @@
                     "default_value": 210,
                     "value": "default_material_print_temperature",
                     "minimum_value": "-273.15",
-                    "minimum_value_warning": "0",
+                    "minimum_value_warning": "-50",
                     "maximum_value_warning": "285",
                     "enabled": "machine_nozzle_temp_enabled and not (material_flow_dependent_temperature)",
                     "settable_per_mesh": false,
