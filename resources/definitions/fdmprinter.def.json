@@ -2428,7 +2428,7 @@
                     "minimum_value": "0.1",
                     "maximum_value": "math.sqrt(machine_max_feedrate_x ** 2 + machine_max_feedrate_y ** 2)",
                     "maximum_value_warning": "300",
-                    "value": "speed_print if magic_spiralize else 120",
+                    "value": "speed_print if magic_spiralize else 5",
                     "settable_per_mesh": false,
                     "settable_per_extruder": true
                 },
