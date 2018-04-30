@@ -116,7 +116,7 @@ UM.PreferencesPage
                     id: definitionsModel
                     containerId: Cura.MachineManager.activeDefinitionId
                     showAll: true
-                    exclude: ["machine_settings", "command_line_settings", "shell", "infill","travel","cooling","support","platform_adhesion","experimental","blackmagic","meshfix","dual"]
+                    exclude: ["layer_height_0","machine_settings", "command_line_settings", "shell", "infill","travel","cooling","support","platform_adhesion","experimental","blackmagic","meshfix","dual"]
                     showAncestors: true
                     expanded: ["*"]
                     visibilityHandler: UM.SettingPreferenceVisibilityHandler { }
