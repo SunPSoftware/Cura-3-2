@@ -13,6 +13,10 @@
             "default_value": 2,
             "maximum_value": "2"
         },
+        "machine_nozzle_size":
+        {
+          "default_value": 14
+        },
         "machine_nozzle_offset_x": { "default_value": 91.8 },
         "machine_nozzle_offset_y": { "default_value": 0.0 }
     }
