@@ -15,7 +15,7 @@ UM.Dialog
     title: catalog.i18nc("@title:window","About SunPrint")
 
     minimumWidth: 500 * screenScaleFactor
-    minimumHeight: 650 * screenScaleFactor
+    minimumHeight: 300 * screenScaleFactor
     width: minimumWidth
     height: minimumHeight
 
