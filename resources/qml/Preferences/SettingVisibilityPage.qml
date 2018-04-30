@@ -116,7 +116,8 @@ UM.PreferencesPage
                     id: definitionsModel
                     containerId: Cura.MachineManager.activeDefinitionId
                     showAll: true
-                    exclude: ["layer_height_0","machine_settings", "command_line_settings", "shell", "infill","travel","cooling","support","platform_adhesion","experimental","blackmagic","meshfix","dual"]
+                    exclude: ["line_width","wall_line_width","wall_line_width_0","wall_line_width_x","skin_line_width","infill_line_width","skirt_brim_line_width","support_line_width","support_interface_line_width","support_roof_line_width","support_bottom_line_width","prime_tower_line_width","initial_layer_line_width_factor",
+"layer_height_0","machine_settings", "command_line_settings", "shell", "infill","travel","cooling","support","platform_adhesion","experimental","blackmagic","meshfix","dual"]
                     showAncestors: true
                     expanded: ["*"]
                     visibilityHandler: UM.SettingPreferenceVisibilityHandler { }
