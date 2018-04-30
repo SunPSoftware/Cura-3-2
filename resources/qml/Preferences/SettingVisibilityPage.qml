@@ -116,7 +116,8 @@ UM.PreferencesPage
                     id: definitionsModel
                     containerId: Cura.MachineManager.activeDefinitionId
                     showAll: true
-                    exclude: ["line_width","wall_line_width","wall_line_width_0","wall_line_width_x","skin_line_width","infill_line_width","skirt_brim_line_width","support_line_width","support_interface_line_width","support_roof_line_width","support_bottom_line_width","prime_tower_line_width","initial_layer_line_width_factor",
+                    exclude: ["default_material_print_temperature","material_print_temperature_layer_0","material_initial_print_temperature","material_final_print_temperature","material_extrusion_cool_down_speed","material_bed_temperature_layer_0","material_adhesion_tendency","material_surface_energy","retract_at_layer_change","retraction_amount","retraction_speed","retraction_retract_speed","retraction_prime_speed","retraction_extra_prime_amount","retraction_min_travel","retraction_count_max","retraction_extrusion_window","material_standby_temperature","switch_extruder_retraction_amount","switch_extruder_retraction_speeds","switch_extruder_retraction_speed","switch_extruder_prime_speed",
+"line_width","wall_line_width","wall_line_width_0","wall_line_width_x","skin_line_width","infill_line_width","skirt_brim_line_width","support_line_width","support_interface_line_width","support_roof_line_width","support_bottom_line_width","prime_tower_line_width","initial_layer_line_width_factor",
 "layer_height_0","machine_settings", "command_line_settings", "shell", "infill","travel","cooling","support","platform_adhesion","experimental","blackmagic","meshfix","dual"]
                     showAncestors: true
                     expanded: ["*"]
