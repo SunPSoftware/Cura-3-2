@@ -12,7 +12,7 @@ UM.Dialog
     id: base
 
     //: About dialog title
-    title: catalog.i18nc("@title:window","About Cura")
+    title: catalog.i18nc("@title:window","About SunPrint")
 
     minimumWidth: 500 * screenScaleFactor
     minimumHeight: 650 * screenScaleFactor
@@ -53,7 +53,7 @@ UM.Dialog
         width: parent.width
 
         //: About dialog application description
-        text: catalog.i18nc("@label","End-to-end solution for fused filament 3D printing.")
+        text: catalog.i18nc("@label","SunP's UI solution for 3D bioprinting.")
         font: UM.Theme.getFont("system")
         wrapMode: Text.WordWrap
         anchors.top: version.bottom
@@ -66,7 +66,7 @@ UM.Dialog
         width: parent.width
 
         //: About dialog application author note
-        text: catalog.i18nc("@info:credit","Cura is developed by Ultimaker B.V. in cooperation with the community.\nCura proudly uses the following open source projects:")
+        text: catalog.i18nc("@info:credit","SunPrint is powered by Ultimaker's Cura.\nSunPrint proudly uses the following open source projects:")
         font: UM.Theme.getFont("system")
         wrapMode: Text.WordWrap
         anchors.top: description.bottom

@@ -268,10 +268,10 @@ UM.MainWindow
                 //: Help menu
                 title: catalog.i18nc("@title:menu menubar:toplevel","&Help");
 
-                MenuItem { action: Cura.Actions.showProfileFolder; }
-                MenuItem { action: Cura.Actions.documentation; }
-                MenuItem { action: Cura.Actions.reportBug; }
-                MenuSeparator { }
+                //MenuItem { action: Cura.Actions.showProfileFolder; }
+                //MenuItem { action: Cura.Actions.documentation; }
+                //MenuItem { action: Cura.Actions.reportBug; }
+                //MenuSeparator { }
                 MenuItem { action: Cura.Actions.about; }
             }
 			
