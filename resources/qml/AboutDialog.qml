@@ -60,7 +60,7 @@ UM.Dialog
         anchors.topMargin: UM.Theme.getSize("default_margin").height
     }
 
-    Label
+    /*Label
     {
         id: creditsNotes
         width: parent.width
@@ -139,7 +139,7 @@ UM.Dialog
             }
         }
     }
-
+	*/
     rightButtons: Button
     {
         //: Close about dialog button
