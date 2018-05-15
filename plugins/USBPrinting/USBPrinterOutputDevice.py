@@ -565,7 +565,7 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                         self._setErrorState(line[6:])
 
             elif b" T:" in line or line.startswith(b"T:"):  # Temperature message
-                temperature_matches = re.findall(b"T(\d*): ?([\d\.]+) ?\/?([\d\.]+)?", line)
+                temperature_matches = re.findall(b"T(\d*):?([\d\.]+) ?\/?([\d\.]+)?", line)
                 temperature_set = False
                 try:
                     for match in temperature_matches:
