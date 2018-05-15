@@ -1130,6 +1130,54 @@ Column
 
             spacing: UM.Theme.getSize("default_margin").width
 
+			Column
+            {
+				spacing: UM.Theme.getSize("default_lining").height
+                
+				Label
+                {
+                    text: connectedPrinter != null ? "X: " + Math.round(connectedPrinter.headX,2) : ""
+                    color: UM.Theme.getColor("setting_control_text")
+                    font: UM.Theme.getFont("default")
+                    width: UM.Theme.getSize("section").height
+                    height: UM.Theme.getSize("setting_control").height
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                }
+
+				Label
+                {
+                    text: connectedPrinter != null ? "Y: " + Math.round(connectedPrinter.headY,2) : ""
+                    color: UM.Theme.getColor("setting_control_text")
+                    font: UM.Theme.getFont("default")
+                    width: UM.Theme.getSize("section").height
+                    height: UM.Theme.getSize("setting_control").height
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                }
+
+				Label
+                {
+                    text: connectedPrinter != null ? "Z: " + Math.round(connectedPrinter.headZ,2) : ""
+                    color: UM.Theme.getColor("setting_control_text")
+                    font: UM.Theme.getFont("default")
+                    width: UM.Theme.getSize("section").height
+                    height: UM.Theme.getSize("setting_control").height
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                }
+			}
+		}
+
+		Row
+		{
+			width: base.width - 2 * UM.Theme.getSize("default_margin").width
+            height: childrenRect.height + UM.Theme.getSize("default_margin").width
+            anchors.left: parent.left
+            anchors.leftMargin: UM.Theme.getSize("default_margin").width
+
+            spacing: UM.Theme.getSize("default_margin").width
+
             Label
             {
                 text: catalog.i18nc("@label", "Send GCode")
