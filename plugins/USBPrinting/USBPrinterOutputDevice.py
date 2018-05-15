@@ -588,7 +588,7 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                 except:
                     Logger.log("w", "Could not parse hotend temperatures from response: %s", line)
                 # Check if there's also a bed temperature
-                temperature_matches = re.findall(b"B: ?([\d\.]+) ?\/?([\d\.]+)?", line)
+                temperature_matches = re.findall(b"B:(-{,1}[\d\.]+) \/(-{,1}[\d\.]+)", line)
                 if container_stack.getProperty("machine_heated_bed", "value") and len(temperature_matches) > 0:
                     match = temperature_matches[0]
                     try:
