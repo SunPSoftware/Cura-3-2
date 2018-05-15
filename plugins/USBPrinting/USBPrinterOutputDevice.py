@@ -580,11 +580,11 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                                 self._updateTargetHotendTemperature(extruder_nr, float(match[2]))
                         else:
                             requested_temperatures = match
-                    if not temperature_set and requested_temperatures:
-                        if requested_temperatures[1]:
-                            self._setHotendTemperature(self._temperature_requested_extruder_index, float(requested_temperatures[1]))
-                        if requested_temperatures[2]:
-                            self._updateTargetHotendTemperature(self._temperature_requested_extruder_index, float(requested_temperatures[2]))
+                    #if not temperature_set and requested_temperatures:
+                    #    if requested_temperatures[1]:
+                    #        self._setHotendTemperature(self._temperature_requested_extruder_index, float(requested_temperatures[1]))
+                    #    if requested_temperatures[2]:
+                    #        self._updateTargetHotendTemperature(self._temperature_requested_extruder_index, float(requested_temperatures[2]))
                 except:
                     Logger.log("w", "Could not parse hotend temperatures from response: %s", line)
                 # Check if there's also a bed temperature
