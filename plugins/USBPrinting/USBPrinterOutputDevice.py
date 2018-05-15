@@ -603,13 +603,16 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                 X_match = re.findall(b"X:(-{,1}[\d\.]+)", line)
                 Y_match = re.findall(b"Y:(-{,1}[\d\.]+)", line)
                 Z_match = re.findall(b"Z:(-{,1}[\d\.]+)", line)
+                X_match = X_match[0]
+                Y_match = Y_match[0]
+                Z_match = Z_match[0]
                 if len(X_match) > 0:
                     try:
                         if X_match[0] and Y_match[0] and Z_match[0]:
                             self._updateHeadPosition(float(X_match[0]),float(Y_match[0]),float(Z_match[0]))
-                            Logger.log("i","Position: X: %f\tY: %f\tZ: %f" % (self.headX,self.headY,self.headZ))
+                            #Logger.log("i","Position: X: %f\tY: %f\tZ: %f" % (self.headX,self.headY,self.headZ))
                         else:
-                            Logger.log("w","Could not receive position from response: %s", line)
+                            Logger.log("w","Could not receive full position from response: %s", line)
                     except:
                         Logger.log("w", "Could not parse position from response: %s", line)
 
