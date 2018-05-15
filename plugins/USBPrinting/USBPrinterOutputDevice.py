@@ -609,6 +609,8 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                         if X_match[0] and Y_match[0] and Z_match[0]:
                             self._updateHeadPosition(float(X_match[0]),float(Y_match[0]),float(Z_match[0]))
                             Logger.log("i","Position: X: %f\tY: %f\tZ: %f" % (self._head_x,self._head_y,self.headZ))
+                        else:
+                            Logger.log("w","Could not receive position from response: %s", line)
                     except:
                         Logger.log("w", "Could not parse position from response: %s", line)
 
