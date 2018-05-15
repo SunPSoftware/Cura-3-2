@@ -603,12 +603,11 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                 X_match = re.findall(b"X:(-{,1}[\d\.]+)", line)
                 Y_match = re.findall(b"Y:(-{,1}[\d\.]+)", line)
                 Z_match = re.findall(b"Z:(-{,1}[\d\.]+)", line)
-                if len(X_matches) > 0:
-                    match = temperature_matches[0]
+                if len(X_match) > 0:
                     try:
                         if X_match[0] and Y_match[0] and Z_match[0]:
                             self._updateHeadPosition(float(X_match[0]),float(Y_match[0]),float(Z_match[0]))
-                            Logger.log("i","Position: X: %f\tY: %f\tZ: %f" % (self._head_x,self._head_y,self.headZ))
+                            Logger.log("i","Position: X: %f\tY: %f\tZ: %f" % (self.headX,self.headY,self.headZ))
                         else:
                             Logger.log("w","Could not receive position from response: %s", line)
                     except:
