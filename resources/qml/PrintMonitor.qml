@@ -1136,7 +1136,7 @@ Column
                 
 				Label
                 {
-                    text: connectedPrinter != null ? "X: " + Math.round(connectedPrinter.headX,2) : ""
+                    text: connectedPrinter != null ? "X: " + connectedPrinter.headX : ""
                     color: UM.Theme.getColor("setting_control_text")
                     font: UM.Theme.getFont("default")
                     width: UM.Theme.getSize("section").height
@@ -1147,7 +1147,7 @@ Column
 
 				Label
                 {
-                    text: connectedPrinter != null ? "Y: " + Math.round(connectedPrinter.headY,2) : ""
+                    text: connectedPrinter != null ? "Y: " + connectedPrinter.headY : ""
                     color: UM.Theme.getColor("setting_control_text")
                     font: UM.Theme.getFont("default")
                     width: UM.Theme.getSize("section").height
@@ -1158,7 +1158,7 @@ Column
 
 				Label
                 {
-                    text: connectedPrinter != null ? "Z: " + Math.round(connectedPrinter.headZ,2) : ""
+                    text: connectedPrinter != null ? "Z: " + connectedPrinter.headZ : ""
                     color: UM.Theme.getColor("setting_control_text")
                     font: UM.Theme.getFont("default")
                     width: UM.Theme.getSize("section").height
