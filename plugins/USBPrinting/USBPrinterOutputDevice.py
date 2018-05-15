@@ -603,9 +603,9 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                 X_match = re.findall(b"X:(-{,1}[\d\.]+)", line)
                 Y_match = re.findall(b"Y:(-{,1}[\d\.]+)", line)
                 Z_match = re.findall(b"Z:(-{,1}[\d\.]+)", line)
-                X_match = X_match[0]
-                Y_match = Y_match[0]
-                Z_match = Z_match[0]
+                #X_match = X_match[0]
+                #Y_match = Y_match[0]
+                #Z_match = Z_match[0]
                 if len(X_match) > 0:
                     try:
                         if X_match[0] and Y_match[0] and Z_match[0]:
