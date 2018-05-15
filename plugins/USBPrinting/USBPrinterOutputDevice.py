@@ -571,19 +571,13 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                     for match in temperature_matches:
                         if match[0]:
                             extruder_nr = int(match[0])
-                            Logger.log("w", "Before extruder_nr compare")
                             if extruder_nr >= container_stack.getProperty("machine_extruder_count", "value"):
                                 continue
-                            Logger.log("w", "After extruder_nr compare")
                             if match[1]:
-                                Logger.log("w", "Before match[1] settingHotend")
                                 self._setHotendTemperature(extruder_nr, float(match[1]))
-                                Logger.log("w", "After match[1] settingHotend")
                                 temperature_set = True
                             if match[2]:
-                                Logger.log("w", "Before match[2] updateTarget")
                                 self._updateTargetHotendTemperature(extruder_nr, float(match[2]))
-                                Logger.log("w", "After match[2] updateTarget")
                         #else:
                         #    requested_temperatures = match
                     #if not temperature_set and requested_temperatures:
