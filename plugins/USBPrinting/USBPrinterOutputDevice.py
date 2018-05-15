@@ -567,17 +567,17 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
             elif b" T:" in line or line.startswith(b"T:"):  # Temperature message
                 temperature_matches = re.findall(b"T(\d):(-{,1}[\d\.]+) \/(-{,1}[\d\.]+)", line)
                 temperature_set = False
-                try:
-                    for match in temperature_matches:
-                        if match[0]:
-                            extruder_nr = int(match[0])
-                            if extruder_nr >= container_stack.getProperty("machine_extruder_count", "value"):
-                                continue
-                            if match[1]:
-                                self._setHotendTemperature(extruder_nr, float(match[1]))
-                                temperature_set = True
-                            if match[2]:
-                                self._updateTargetHotendTemperature(extruder_nr, float(match[2]))
+                #try:
+                for match in temperature_matches:
+                    if match[0]:
+                        extruder_nr = int(match[0])
+                        if extruder_nr >= container_stack.getProperty("machine_extruder_count", "value"):
+                            continue
+                        if match[1]:
+                            self._setHotendTemperature(extruder_nr, float(match[1]))
+                            temperature_set = True
+                        if match[2]:
+                            self._updateTargetHotendTemperature(extruder_nr, float(match[2]))
                         #else:
                         #    requested_temperatures = match
                     #if not temperature_set and requested_temperatures:
@@ -585,8 +585,8 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                     #        self._setHotendTemperature(self._temperature_requested_extruder_index, float(requested_temperatures[1]))
                     #    if requested_temperatures[2]:
                     #        self._updateTargetHotendTemperature(self._temperature_requested_extruder_index, float(requested_temperatures[2]))
-                except:
-                    Logger.log("w", "Could not parse hotend temperatures from response: %s", line)
+                #except:
+                    #Logger.log("w", "Could not parse hotend temperatures from response: %s", line)
                 # Check if there's also a bed temperature
                 temperature_matches = re.findall(b"B: ?([\d\.]+) ?\/?([\d\.]+)?", line)
                 if container_stack.getProperty("machine_heated_bed", "value") and len(temperature_matches) > 0:
