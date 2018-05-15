@@ -567,7 +567,7 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
             elif b" T:" in line or line.startswith(b"T:"):  # Temperature message
                 temperature_matches = re.findall(b"T(\d):(-{,1}[\d\.]+) \/(-{,1}[\d\.]+)", line)
                 temperature_set = False
-                #try:
+                try:
                     for match in temperature_matches:
                         if match[0]:
                             extruder_nr = int(match[0])
