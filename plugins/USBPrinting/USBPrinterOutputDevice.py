@@ -610,7 +610,7 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                     try:
                         if X_match[0] and Y_match[0] and Z_match[0]:
                             self._updateHeadPosition(float(X_match[0]),float(Y_match[0]),float(Z_match[0]))
-                            #Logger.log("i","Position: X: %f\tY: %f\tZ: %f" % (self.headX,self.headY,self.headZ))
+                            Logger.log("i","Position: X: %f\tY: %f\tZ: %f" % (self.headX,self.headY,self.headZ))
                         else:
                             Logger.log("w","Could not receive full position from response: %s", line)
                     except:
