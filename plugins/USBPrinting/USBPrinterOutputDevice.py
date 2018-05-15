@@ -549,6 +549,7 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                     self.sendCommand("M105 T%d" % (self._temperature_requested_extruder_index))
                 else:
                     self.sendCommand("M105")
+                self.sendCommand("M114")
                 temperature_request_timeout = time.time() + 5
 
             if line.startswith(b"Error:"):
@@ -598,6 +599,17 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                             self._updateTargetBedTemperature(float(match[1]))
                     except:
                         Logger.log("w", "Could not parse bed temperature from response: %s", line)
+            elif line.startswith(b"X:") and b"Y:" in line and b"Z" in line:  # Position message
+                X_match = re.findall(b"X:(-{,1}[\d\.]+)", line)
+                Y_match = re.findall(b"Y:(-{,1}[\d\.]+)", line)
+                Z_match = re.findall(b"Z:(-{,1}[\d\.]+)", line)
+                if len(X_matches) > 0:
+                    match = temperature_matches[0]
+                    try:
+                        if X_match[0] and Y_match[0] and Z_match[0]:
+                            self._updateHeadPosition(float(X_match[0]),float(Y_match[0]),float(Z_match[0]))
+                    except:
+                        Logger.log("w", "Could not parse bed temperature from response: %s", line)
 
             elif b"_min" in line or b"_max" in line:
                 tag, value = line.split(b":", 1)
@@ -630,6 +642,7 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                     self.sendCommand("M105 T%d" % self._temperature_requested_extruder_index)
                 else:
                     self.sendCommand("M105")
+                self.sendCommand("M114")
 
         Logger.log("i", "Printer connection listen thread stopped for %s" % self._serial_port)
 
