@@ -578,8 +578,8 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                                 temperature_set = True
                             if match[2]:
                                 self._updateTargetHotendTemperature(extruder_nr, float(match[2]))
-                        else:
-                            requested_temperatures = match
+                        #else:
+                        #    requested_temperatures = match
                     #if not temperature_set and requested_temperatures:
                     #    if requested_temperatures[1]:
                     #        self._setHotendTemperature(self._temperature_requested_extruder_index, float(requested_temperatures[1]))
