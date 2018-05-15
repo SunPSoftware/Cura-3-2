@@ -593,13 +593,9 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                     match = temperature_matches[0]
                     try:
                         if match[0]:
-                            Logger.log("i", "Before set bed temp")
                             self._setBedTemperature(float(match[0]))
-                            Logger.log("i", "After set bed temp")
                         if match[1]:
-                            Logger.log("i", "Before target bed temp")
                             self._updateTargetBedTemperature(float(match[1]))
-                            Logger.log("i", "After target bed temp")
                     except:
                         Logger.log("w", "Could not parse bed temperature from response: %s", line)
 
