@@ -116,20 +116,20 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
         self._sendCommand("M104 T%s S%s" % (index, temperature))
 
     def _setHeadPosition(self, x, y , z, speed):
-        self._sendCommand("G0 X%s Y%s Z%s F%s" % (x, y, z, speed))
+        self.sendCommand("G0 X%s Y%s Z%s F%s" % (x, y, z, speed))
 
     def _setHeadX(self, x, speed):
-        self._sendCommand("G0 X%s F%s" % (x, speed))
+        self.sendCommand("G0 X%s F%s" % (x, speed))
 
     def _setHeadY(self, y, speed):
-        self._sendCommand("G0 Y%s F%s" % (y, speed))
+        self.sendCommand("G0 Y%s F%s" % (y, speed))
 
     def _setHeadZ(self, z, speed):
-        self._sendCommand("G0 Y%s F%s" % (z, speed))
+        self.sendCommand("G0 Y%s F%s" % (z, speed))
 
     def _homeHead(self):
-        self._sendCommand("G28 X")
-        self._sendCommand("G28 Y")
+        self.sendCommand("G28 X")
+        self.sendCommand("G28 Y")
         
     def _homeX(self):
         self.sendCommand("G28 X")
@@ -138,7 +138,7 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
         self.sendCommand("G28 Y")
 
     def _homeBed(self):
-        self._sendCommand("G28 Z")
+        self.sendCommand("G28 Z")
 
     ##  Updates the target bed temperature from the printer, and emit a signal if it was changed.
     #
