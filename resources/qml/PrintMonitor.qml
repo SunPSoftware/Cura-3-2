@@ -536,13 +536,13 @@ Column
                 {
                     return false; //Target temperature too high.
                 }
-                if (Math.round(preheatTemperatureInput.text) == 0)
+                /*if (Math.round(preheatTemperatureInput.text) == 0)
                 {
                     return false; //Setting the temperature to 0 is not allowed (since that cancels the pre-heating).
-                }
+                }*/
                 return true; //Preconditions are met.
             }
-            anchors.right: parent.right
+            anchors.right: bedHeatOffButton.left
             anchors.bottom: parent.bottom
             anchors.margins: UM.Theme.getSize("default_margin").width
             style: ButtonStyle {
@@ -631,6 +631,137 @@ Column
                 {
                     connectedPrinter.preheatBed(preheatTemperatureInput.text, connectedPrinter.preheatBedTimeout);
                     preheatUpdateTimer.start();
+                    preheatUpdateTimer.update(); //Update once before the first timer is triggered.
+                }
+                else
+                {
+                    connectedPrinter.cancelPreheatBed();
+                    preheatUpdateTimer.update();
+                }
+            }
+
+            onHoveredChanged:
+            {
+                if (hovered)
+                {
+                    base.showTooltip(
+                        base,
+                        {x: 0, y: preheatButton.mapToItem(base, 0, 0).y},
+                        catalog.i18nc("@tooltip of pre-heat", "Heat the bed in advance before printing. You can continue adjusting your print while it is heating, and you won't have to wait for the bed to heat up when you're ready to print.")
+                    );
+                }
+                else
+                {
+                    base.hideTooltip();
+                }
+            }
+        }
+		 Button //The pre-heat button.
+        {
+            id: bedHeatOffButton
+            height: UM.Theme.getSize("setting_control").height
+            visible: connectedPrinter != null ? connectedPrinter.canPreHeatBed: true
+            enabled:
+            {
+                if (!preheatTemperatureControl.enabled)
+                {
+                    return false; //Not connected, not authenticated or printer is busy.
+                }
+                if (preheatUpdateTimer.running)
+                {
+                    return true; //Can always cancel if the timer is running.
+                }
+                return true; //Preconditions are met.
+            }
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            anchors.margins: UM.Theme.getSize("default_margin").width
+            style: ButtonStyle {
+                background: Rectangle
+                {
+                    border.width: UM.Theme.getSize("default_lining").width
+                    implicitWidth: actualLabel.contentWidth + (UM.Theme.getSize("default_margin").width * 2)
+                    border.color:
+                    {
+                        if(!control.enabled)
+                        {
+                            return UM.Theme.getColor("action_button_disabled_border");
+                        }
+                        else if(control.pressed)
+                        {
+                            return UM.Theme.getColor("action_button_active_border");
+                        }
+                        else if(control.hovered)
+                        {
+                            return UM.Theme.getColor("action_button_hovered_border");
+                        }
+                        else
+                        {
+                            return UM.Theme.getColor("action_button_border");
+                        }
+                    }
+                    color:
+                    {
+                        if(!control.enabled)
+                        {
+                            return UM.Theme.getColor("action_button_disabled");
+                        }
+                        else if(control.pressed)
+                        {
+                            return UM.Theme.getColor("action_button_active");
+                        }
+                        else if(control.hovered)
+                        {
+                            return UM.Theme.getColor("action_button_hovered");
+                        }
+                        else
+                        {
+                            return UM.Theme.getColor("action_button");
+                        }
+                    }
+                    Behavior on color
+                    {
+                        ColorAnimation
+                        {
+                            duration: 50
+                        }
+                    }
+
+                    Label
+                    {
+                        id: actualLabel
+                        anchors.centerIn: parent
+                        color:
+                        {
+                            if(!control.enabled)
+                            {
+                                return UM.Theme.getColor("action_button_disabled_text");
+                            }
+                            else if(control.pressed)
+                            {
+                                return UM.Theme.getColor("action_button_active_text");
+                            }
+                            else if(control.hovered)
+                            {
+                                return UM.Theme.getColor("action_button_hovered_text");
+                            }
+                            else
+                            {
+                                return UM.Theme.getColor("action_button_text");
+                            }
+                        }
+                        font: UM.Theme.getFont("action_button")
+                        text: preheatUpdateTimer.running ? catalog.i18nc("@button Cancel pre-heating", "Bed Heat Off") : catalog.i18nc("@button", "Bed Heat Off")
+                    }
+                }
+            }
+
+            onClicked:
+            {
+                if (!preheatUpdateTimer.running)
+                {
+                    connectedPrinter.preheatBed(0, connectedPrinter.preheatBedTimeout);
+                    //preheatUpdateTimer.start();
                     preheatUpdateTimer.update(); //Update once before the first timer is triggered.
                 }
                 else
@@ -919,7 +1050,7 @@ Column
                 Button
                 {
                     style: textButtonStyle
-					text: "Reverse"
+					text: "Retract"
                     width: height * 2.5
                     height: UM.Theme.getSize("setting_control").height
 
@@ -949,7 +1080,7 @@ Column
                 
 				Label
                 {
-                    text: catalog.i18nc("@label", "Tool")
+                    text: catalog.i18nc("@label", "Nozzle")
                     color: UM.Theme.getColor("setting_control_text")
                     font: UM.Theme.getFont("default")
                     width: UM.Theme.getSize("section").height
@@ -1014,7 +1145,7 @@ Column
 
             Label
             {
-                text: catalog.i18nc("@label", "Jog Distance")
+                text: catalog.i18nc("@label", "Jog Distance (mm)")
                 color: UM.Theme.getColor("setting_control_text")
                 font: UM.Theme.getFont("default")
 
@@ -1148,7 +1279,7 @@ Column
                 
 				Label
                 {
-                    text: connectedPrinter != null ? "X: " + connectedPrinter.headX : ""
+                    text: connectedPrinter != null ? "X: " + connectedPrinter.headX + " mm" : ""
                     color: UM.Theme.getColor("setting_control_text")
                     font: UM.Theme.getFont("default")
                     width: UM.Theme.getSize("section").height
@@ -1159,7 +1290,7 @@ Column
 
 				Label
                 {
-                    text: connectedPrinter != null ? "Y: " + connectedPrinter.headY : ""
+                    text: connectedPrinter != null ? "Y: " + connectedPrinter.headY + " mm" : ""
                     color: UM.Theme.getColor("setting_control_text")
                     font: UM.Theme.getFont("default")
                     width: UM.Theme.getSize("section").height
@@ -1170,7 +1301,7 @@ Column
 
 				Label
                 {
-                    text: connectedPrinter != null ? "Z: " + connectedPrinter.headZ : ""
+                    text: connectedPrinter != null ? "Z: " + connectedPrinter.headZ + " mm" : ""
                     color: UM.Theme.getColor("setting_control_text")
                     font: UM.Theme.getFont("default")
                     width: UM.Theme.getSize("section").height
