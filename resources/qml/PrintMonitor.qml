@@ -1130,6 +1130,17 @@ Column
 
             spacing: UM.Theme.getSize("default_margin").width
 
+			Label
+            {
+                text: catalog.i18nc("@label", "Printhead Position")
+                color: UM.Theme.getColor("setting_control_text")
+                font: UM.Theme.getFont("default")
+
+                width: Math.round(parent.width * 0.4) - UM.Theme.getSize("default_margin").width
+                height: UM.Theme.getSize("setting_control").height
+                verticalAlignment: Text.AlignVCenter
+            }
+
 			Column
             {
 				spacing: UM.Theme.getSize("default_lining").height
