@@ -80,6 +80,12 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
         self._y_max_endstop_pressed = False
         self._z_max_endstop_pressed = False
 
+        self._num_extruders = 4
+        self._hotend_temperatures = [0] * self._num_extruders
+        self._target_hotend_temperatures = [0] * self._num_extruders
+        self._material_ids = [""] * self._num_extruders
+        self._hotend_ids = [""] * self._num_extruders
+
         # In order to keep the connection alive we request the temperature every so often from a different extruder.
         # This index is the extruder we requested data from the last time.
         self._temperature_requested_extruder_index = 0
