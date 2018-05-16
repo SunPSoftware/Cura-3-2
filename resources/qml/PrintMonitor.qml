@@ -1144,7 +1144,7 @@ Column
 			Column
             {
 				spacing: UM.Theme.getSize("default_lining").height
-				visible: 
+				visible: true
                 
 				Label
                 {
