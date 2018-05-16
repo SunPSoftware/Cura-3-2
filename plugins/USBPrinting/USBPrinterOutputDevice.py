@@ -473,7 +473,7 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
         except serial.SerialTimeoutException:
             Logger.log("w","Serial timeout while writing to serial port, trying again. Command: %s", cmd)
             try:
-                time.sleep(0.5)
+                time.sleep(2)
                 self._serial.write((cmd + "\n").encode())
             except Exception as e:
                 Logger.log("e","Unexpected error while writing serial port %s " % e)
