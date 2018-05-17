@@ -614,6 +614,7 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                             self._updateTargetBedTemperature(float(match[1]))
                     except:
                         Logger.log("w", "Could not parse bed temperature from response: %s", line)
+                Logger.log("d","Through temp")
             elif line.startswith(b"X:") and b"Y:" in line and b"Z:" in line:  # Position message
                 Logger.log("d","Step: Position")
                 X_match = re.findall(b"X:(-{,1}[\d\.]+)", line)
