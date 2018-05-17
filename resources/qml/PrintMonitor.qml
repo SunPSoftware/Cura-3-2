@@ -349,7 +349,7 @@ Column
                         color: UM.Theme.getColor("text")
                         anchors.right: parent.right
                         anchors.bottom: parent.bottom
-						anchors.bottom: extruderTempRow.bottom
+						anchors.top: extruderTempRow.bottom
                         anchors.margins: UM.Theme.getSize("default_margin").width
 
                         MouseArea //For tooltip.
