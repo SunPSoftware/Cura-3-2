@@ -172,13 +172,14 @@ Column
 						TextField
 						{
 							id: extruderTemp
+							text: "") + "°C"
 							font: UM.Theme.getFont("default")
 							onAccepted: connectedPrinter.directGCode(text)
 						}
 
 						Button
 						{
-							text: "Set Heat";
+							text: "Set";
 							height: UM.Theme.getSize("setting_control").height
 							width: height + UM.Theme.getSize("default_margin").width
 
@@ -191,7 +192,7 @@ Column
 						}
 						Button
 						{
-							text: "Heat Off";
+							text: "Off";
 							height: UM.Theme.getSize("setting_control").height
 							width: height + UM.Theme.getSize("default_margin").width
 
