@@ -159,6 +159,50 @@ Column
                             }
                         }
                     }
+					Row
+					{
+						width: base.width - 2 * UM.Theme.getSize("default_margin").width
+						height: childrenRect.height + UM.Theme.getSize("default_margin").width
+						anchors.left: parent.left
+						anchors.leftMargin: UM.Theme.getSize("default_margin").width
+						anchors.top: extruderTemperature.bottom
+
+						spacing: UM.Theme.getSize("default_margin").width
+
+						TextField
+						{
+							id: extruderTemp
+							font: UM.Theme.getFont("default")
+							onAccepted: connectedPrinter.directGCode(text)
+						}
+
+						Button
+						{
+							text: "Set Heat";
+							height: UM.Theme.getSize("setting_control").height
+							width: height + UM.Theme.getSize("default_margin").width
+
+							style: textButtonStyle
+
+							onClicked:
+							{
+								connectedPrinter.setTargetHotendTemperature(index, extruderTemp.text)
+							}
+						}
+						Button
+						{
+							text: "Heat Off";
+							height: UM.Theme.getSize("setting_control").height
+							width: height + UM.Theme.getSize("default_margin").width
+
+							style: textButtonStyle
+
+							onClicked:
+							{
+								connectedPrinter.setTargetHotendTemperature(index, "0")
+							}
+						}
+					}
                     Rectangle //Material colour indication.
                     {
                         id: materialColor
@@ -656,7 +700,7 @@ Column
                 }
             }
         }
-		 Button //The pre-heat button.
+		Button //The bed heat off button.
         {
             id: bedHeatOffButton
             height: UM.Theme.getSize("setting_control").height
@@ -1340,18 +1384,18 @@ Column
             }
 
 			Button
+			{
+                text: "Enter";
+                height: UM.Theme.getSize("setting_control").height
+				width: height + UM.Theme.getSize("default_margin").width
+
+				style: textButtonStyle
+
+                onClicked:
                 {
-                    text: "Enter";
-                    height: UM.Theme.getSize("setting_control").height
-					width: height + UM.Theme.getSize("default_margin").width
-
-					style: textButtonStyle
-
-                    onClicked:
-                    {
-                        connectedPrinter.directGCode(sendingGCode.text)
-                    }
+                    connectedPrinter.directGCode(sendingGCode.text)
                 }
+            }
 		}
     }
 
