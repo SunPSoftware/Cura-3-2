@@ -196,9 +196,10 @@ Column
 							border.color: !enabled ? UM.Theme.getColor("setting_control_disabled_border") : preheatTemperatureInputMouseArea.containsMouse ? UM.Theme.getColor("setting_control_border_highlight") : UM.Theme.getColor("setting_control_border")
 							anchors.left: extruderTempRow.left
 							anchors.leftMargin: UM.Theme.getSize("default_margin").width
-							anchors.top: extruderTempRow.top
-							anchors.topMargin: UM.Theme.getSize("default_margin").height
-							width: height + UM.Theme.getSize("default_margin").width //UM.Theme.getSize("setting_control").width
+							//anchors.top: extruderTempRow.top
+							//anchors.topMargin: UM.Theme.getSize("default_margin").height
+							anchors.verticalCenter: extruderTempOff.verticalCenter
+							width: height + UM.Theme.getSize("default_margin").width * 2 //UM.Theme.getSize("setting_control").width
 							height: UM.Theme.getSize("setting_control").height
 							visible: connectedPrinter != null 
 							Rectangle //Highlight of input field.
