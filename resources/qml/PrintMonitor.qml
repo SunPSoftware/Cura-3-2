@@ -166,6 +166,8 @@ Column
 						height: childrenRect.height + UM.Theme.getSize("default_margin").width
 						anchors.left: parent.left
 						anchors.leftMargin: UM.Theme.getSize("default_margin").width
+						anchors.right: parent.right
+						anchors.rightMargin: UM.Theme.getSize("default_margin").width
 						anchors.top: extruderTemperature.bottom
 
 						spacing: UM.Theme.getSize("default_margin").width
