@@ -316,6 +316,7 @@ Column
                         color: UM.Theme.getColor("text")
                         anchors.left: materialColor.right
                         anchors.bottom: parent.bottom
+						anchors.top: extruderTempRow.botttom
                         anchors.margins: UM.Theme.getSize("default_margin").width
 
                         MouseArea //For tooltip.
@@ -348,6 +349,7 @@ Column
                         color: UM.Theme.getColor("text")
                         anchors.right: parent.right
                         anchors.bottom: parent.bottom
+						anchors.bottom: extruderTempRow.bottom
                         anchors.margins: UM.Theme.getSize("default_margin").width
 
                         MouseArea //For tooltip.
