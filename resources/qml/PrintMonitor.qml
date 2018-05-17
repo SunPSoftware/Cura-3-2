@@ -197,8 +197,8 @@ Column
 							anchors.left: extruderTempRow.left
 							anchors.leftMargin: UM.Theme.getSize("default_margin").width
 							anchors.top: extruderTempRow.top
-							anchors.bottomMargin: UM.Theme.getSize("default_margin").height
-							width: UM.Theme.getSize("setting_control").width
+							anchors.topMargin: UM.Theme.getSize("default_margin").height
+							width: height + UM.Theme.getSize("default_margin").width //UM.Theme.getSize("setting_control").width
 							height: UM.Theme.getSize("setting_control").height
 							visible: connectedPrinter != null 
 							Rectangle //Highlight of input field.
