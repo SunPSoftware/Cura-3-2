@@ -175,7 +175,7 @@ Column
 						Rectangle //Input field for pre-heat temperature.
 						{
 							id: extruderTempControl
-							color: !enabled ? UM.Theme.getColor("setting_control_disabled") : showError ? UM.Theme.getColor("setting_validation_error_background") : UM.Theme.getColor("setting_validation_ok")
+							color: !enabled ? UM.Theme.getColor("setting_control_disabled") : UM.Theme.getColor("setting_validation_ok")
 							enabled:
 							{
 								if (connectedPrinter == null)
@@ -194,8 +194,8 @@ Column
 							}
 							border.width: UM.Theme.getSize("default_lining").width
 							border.color: !enabled ? UM.Theme.getColor("setting_control_disabled_border") : preheatTemperatureInputMouseArea.containsMouse ? UM.Theme.getColor("setting_control_border_highlight") : UM.Theme.getColor("setting_control_border")
-							anchors.left: extruderTempRow.left
-							anchors.leftMargin: UM.Theme.getSize("default_margin").width
+							//anchors.left: extruderTempRow.left
+							//anchors.leftMargin: UM.Theme.getSize("default_margin").width
 							//anchors.top: extruderTempRow.top
 							//anchors.topMargin: UM.Theme.getSize("default_margin").height
 							anchors.verticalCenter: extruderTempOff.verticalCenter

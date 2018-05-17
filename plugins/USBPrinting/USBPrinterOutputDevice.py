@@ -633,6 +633,7 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                 tag, value = line.split(b":", 1)
                 self._setEndstopState(tag,(b"H" in value or b"TRIGGERED" in value))
 
+            Logger.log("d,""Made it to busy")
             if line.startswith(b"busy:") and not self._is_printing:
                 busy_timeout = time.time() + 2.5 # 2.5 chosen because busy is sent every 2 seconds
                 Logger.log("d","BUSY: %s", line)
