@@ -242,8 +242,8 @@ Column
 							height: UM.Theme.getSize("setting_control").height
 							width: height + UM.Theme.getSize("default_margin").width
 							anchors.top: parent.top
-							anchors.right: extruderTempOff.left
-							anchors.rightMargin: UM.Theme.getSize("setting_unit_margin").width
+							//anchors.right: extruderTempOff.left
+							//anchors.rightMargin: UM.Theme.getSize("setting_unit_margin").width
 							anchors.topMargin: UM.Theme.getSize("setting_unit_margin").height
 
 							style: textButtonStyle
@@ -260,8 +260,8 @@ Column
 							height: UM.Theme.getSize("setting_control").height
 							width: height + UM.Theme.getSize("default_margin").width
 							anchors.top: parent.top
-							anchors.right: parent.right
-							anchors.rightMargin: UM.Theme.getSize("setting_unit_margin").width
+							//anchors.right: parent.right
+							//anchors.rightMargin: UM.Theme.getSize("setting_unit_margin").width
 							anchors.topMargin: UM.Theme.getSize("setting_unit_margin").height
 
 							style: textButtonStyle
