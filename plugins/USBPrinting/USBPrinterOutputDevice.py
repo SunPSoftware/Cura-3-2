@@ -496,7 +496,7 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
     ## Queue up command to be sent when machine is not busy
     def queueCommand(self, cmd):
         self._waiting_queue.put(cmd)
-        Logger.log("i","Queued command %s", cmd)
+        Logger.log("d","Queued command %s", cmd)
 
     ##  Set the error state with a message.
     #   \param error String with the error message.
@@ -640,7 +640,7 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                 if not self._waiting_queue.empty():
                     com1 = self._waiting_queue.get()
                     self._sendCommand(con1)
-                    Logger.log("popped command %s", com1)
+                    Logger.log("d","popped command %s", com1)
 
 
             if self._is_printing:
