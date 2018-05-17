@@ -566,7 +566,6 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                 temperature_request_timeout = time.time() + 5
 
             if line.startswith(b"Error:"):
-                Logger.log("d","Step: Error")
                 # Oh YEAH, consistency.
                 # Marlin reports a MIN/MAX temp error as "Error:x\n: Extruder switched off. MAXTEMP triggered !\n"
                 # But a bed temp error is reported as "Error: Temperature heated bed switched off. MAXTEMP triggered !!"
@@ -580,7 +579,6 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                         self._setErrorState(line[6:])
 
             elif b" T:" in line or line.startswith(b"T:"):  # Temperature message
-                Logger.log("d","Step: Temperature")
                 temperature_matches = re.findall(b"T(\d):(-{,1}[\d\.]+) \/(-{,1}[\d\.]+)", line)
                 temperature_set = False
                 try:
@@ -614,9 +612,7 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                             self._updateTargetBedTemperature(float(match[1]))
                     except:
                         Logger.log("w", "Could not parse bed temperature from response: %s", line)
-                Logger.log("d","Through temp")
             elif line.startswith(b"X:") and b"Y:" in line and b"Z:" in line:  # Position message
-                Logger.log("d","Step: Position")
                 X_match = re.findall(b"X:(-{,1}[\d\.]+)", line)
                 Y_match = re.findall(b"Y:(-{,1}[\d\.]+)", line)
                 Z_match = re.findall(b"Z:(-{,1}[\d\.]+)", line)
@@ -634,25 +630,24 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                         Logger.log("w", "Could not parse position from response: %s", line)
 
             elif b"_min" in line or b"_max" in line:
-                Logger.log("d","Step: endstops")
                 tag, value = line.split(b":", 1)
                 self._setEndstopState(tag,(b"H" in value or b"TRIGGERED" in value))
             else:
-                Logger.log("d","Step: Nothing")
+                pass
 
             Logger.log("d,""Made it to busy")
-            if line.startswith(b"busy:") and not self._is_printing:
-                busy_timeout = time.time() + 2.5 # 2.5 chosen because busy is sent every 2 seconds
-                Logger.log("d","BUSY: %s", line)
+            #if line.startswith(b"busy:") and not self._is_printing:
+            #    busy_timeout = time.time() + 2.5 # 2.5 chosen because busy is sent every 2 seconds
+            #    Logger.log("d","BUSY: %s", line)
 
             Logger.log ("d","%f %f",time.time(),busy_timeout)
-            if time.time() > busy_timeout and not self_is_printing:
-                if not self._waiting_queue.empty():
-                    com1 = self._waiting_queue.get()
-                    self._sendCommand(con1)
-                    Logger.log("d","popped command %s", com1)
+            #if time.time() > busy_timeout and not self_is_printing:
+            #    if not self._waiting_queue.empty():
+            #        com1 = self._waiting_queue.get()
+            #        self._sendCommand(con1)
+            #        Logger.log("d","popped command %s", com1)
 
-
+    
             if self._is_printing:
                 if line == b"" and time.time() > ok_timeout:
                     line = b"ok"  # Force a timeout (basically, send next command)
