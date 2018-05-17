@@ -169,12 +169,67 @@ Column
 
 						spacing: UM.Theme.getSize("default_margin").width
 
-						TextField
+						Rectangle //Input field for pre-heat temperature.
 						{
-							id: extruderTemp
-							//text: "") + "°C"
-							font: UM.Theme.getFont("default")
-							onAccepted: connectedPrinter.directGCode(text)
+							id: extruderTempControl
+							color: !enabled ? UM.Theme.getColor("setting_control_disabled") : showError ? UM.Theme.getColor("setting_validation_error_background") : UM.Theme.getColor("setting_validation_ok")
+							enabled:
+							{
+								if (connectedPrinter == null)
+								{
+									return false; //Can't preheat if not connected.
+								}
+								if (!connectedPrinter.acceptsCommands)
+								{
+									return false; //Not allowed to do anything.
+								}
+								if (connectedPrinter.jobState == "printing" || connectedPrinter.jobState == "pre_print" || connectedPrinter.jobState == "resuming" || connectedPrinter.jobState == "pausing" || connectedPrinter.jobState == "paused" || connectedPrinter.jobState == "error" || connectedPrinter.jobState == "offline")
+								{
+									return false; //Printer is in a state where it can't react to pre-heating.
+								}
+								return true;
+							}
+							border.width: UM.Theme.getSize("default_lining").width
+							border.color: !enabled ? UM.Theme.getColor("setting_control_disabled_border") : preheatTemperatureInputMouseArea.containsMouse ? UM.Theme.getColor("setting_control_border_highlight") : UM.Theme.getColor("setting_control_border")
+							anchors.left: parent.left
+							anchors.leftMargin: UM.Theme.getSize("default_margin").width
+							anchors.bottom: parent.bottom
+							anchors.bottomMargin: UM.Theme.getSize("default_margin").height
+							width: UM.Theme.getSize("setting_control").width
+							height: UM.Theme.getSize("setting_control").height
+							visible: connectedPrinter != null 
+							Rectangle //Highlight of input field.
+							{
+								anchors.fill: parent
+								anchors.margins: UM.Theme.getSize("default_lining").width
+								color: UM.Theme.getColor("setting_control_highlight")
+								opacity: preheatTemperatureControl.hovered ? 1.0 : 0
+							}
+							Label //Maximum temperature indication.
+							{
+								text: "" + "°C"
+								color: UM.Theme.getColor("setting_unit")
+								font: UM.Theme.getFont("default")
+								anchors.right: parent.right
+								anchors.rightMargin: UM.Theme.getSize("setting_unit_margin").width
+								anchors.verticalCenter: parent.verticalCenter
+							}
+							TextInput
+							{
+								id: extruderTempInput
+								font: UM.Theme.getFont("default")
+								color: !enabled ? UM.Theme.getColor("setting_control_disabled_text") : UM.Theme.getColor("setting_control_text")
+								selectByMouse: true
+								maximumLength: 10
+								enabled: parent.enabled
+								validator: RegExpValidator { regExp: /^-?[0-9]{0,9}[.,]?[0-9]{0,10}$/ } //Floating point regex.
+								anchors.left: parent.left
+								anchors.leftMargin: UM.Theme.getSize("setting_unit_margin").width
+								anchors.right: parent.right
+								anchors.verticalCenter: parent.verticalCenter
+								renderType: Text.NativeRendering
+
+							}
 						}
 
 						Button
@@ -187,7 +242,7 @@ Column
 
 							onClicked:
 							{
-								connectedPrinter.setTargetHotendTemperature(index, extruderTemp.text)
+								connectedPrinter.setTargetHotendTemperature(index, extruderTempInput.text)
 							}
 						}
 						Button
