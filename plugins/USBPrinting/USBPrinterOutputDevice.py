@@ -57,6 +57,7 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
 
         ## Queue for commands that need to be send. Used when command is sent when a print is active.
         self._command_queue = queue.Queue()
+        self._waiting_queue = queue.Queue()
 
         self._is_printing = False
         self._is_paused = False
@@ -109,36 +110,36 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
 
     def _setTargetBedTemperature(self, temperature):
         Logger.log("d", "Setting bed temperature to %s", temperature)
-        self._sendCommand("M140 S%s" % temperature)
+        self.queueCommand("M140 S%s" % temperature)
 
     def _setTargetHotendTemperature(self, index, temperature):
         Logger.log("d", "Setting hotend %s temperature to %s", index, temperature)
-        self._sendCommand("M104 T%s S%s" % (index, temperature))
+        self.queueCommand("M104 T%s S%s" % (index, temperature))
 
     def _setHeadPosition(self, x, y , z, speed):
-        self._sendCommand("G0 X%s Y%s Z%s F%s" % (x, y, z, speed))
+        self.queueCommand("G0 X%s Y%s Z%s F%s" % (x, y, z, speed))
 
     def _setHeadX(self, x, speed):
-        self._sendCommand("G0 X%s F%s" % (x, speed))
+        self.queueCommand("G0 X%s F%s" % (x, speed))
 
     def _setHeadY(self, y, speed):
-        self._sendCommand("G0 Y%s F%s" % (y, speed))
+        self.queueCommand("G0 Y%s F%s" % (y, speed))
 
     def _setHeadZ(self, z, speed):
-        self._sendCommand("G0 Y%s F%s" % (z, speed))
+        self.queueCommand("G0 Y%s F%s" % (z, speed))
 
     def _homeHead(self):
-        self._sendCommand("G28 X")
-        self._sendCommand("G28 Y")
+        self.queueCommand("G28 X")
+        self.queueCommand("G28 Y")
         
     def _homeX(self):
-        self._sendCommand("G28 X")
+        self.queueCommand("G28 X")
 
     def _homeY(self):
-        self._sendCommand("G28 Y")
+        self.queueCommand("G28 Y")
 
     def _homeBed(self):
-        self._sendCommand("G28 Z")
+        self.queueCommand("G28 Z")
 
     ##  Updates the target bed temperature from the printer, and emit a signal if it was changed.
     #
@@ -183,25 +184,25 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
         self.printGCode(gcode_list)
 
     def _moveHead(self, x, y, z, speed):
-        self._sendCommand("G91")
-        self._sendCommand("G0 X%f Y%f Z%f F%f" % (x, y, z, speed))
-        self._sendCommand("G90")
+        self.queueCommand("G91")
+        self.queueCommand("G0 X%f Y%f Z%f F%f" % (x, y, z, speed))
+        self.queueCommand("G90")
         
 	# Added to create manual extruder control 2017.11.03
     def _moveExtruder(self, e, speed):
-        self._sendCommand("G91")
-        self._sendCommand("G0 E%s F%s" % (e, speed))
-        self._sendCommand("G90")
+        self.queueCommand("G91")
+        self.queueCommand("G0 E%s F%s" % (e, speed))
+        self.queueCommand("G90")
     # Added to allow for tool change 2017.11.07
     def _changeTool(self, t):
-        self._sendCommand("T%s" % t)
+        self.queueCommand("T%s" % t)
 
     ## Send a gcode to the machine 2017.12.05
 	#  Note that this is a relative move. 
 	#  /param com command to be sent
 	#  /sa _directGCode Implementation function
     def _directGCode(self, com):
-        self._sendCommand(com)
+        self.queueCommand(com)
 
     ##  Start a print based on a g-code.
     #   \param gcode_list List with gcode (strings).
@@ -492,6 +493,10 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
         elif self._connection_state == ConnectionState.connected:
             self._sendCommand(cmd)
 
+    ## Queue up command to be sent when machine is not busy
+    def queueCommand(self, cmd):
+        self._waiting_queue.put(cmd)
+
     ##  Set the error state with a message.
     #   \param error String with the error message.
     def _setErrorState(self, error):
@@ -544,6 +549,7 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
         container_stack = Application.getInstance().getGlobalContainerStack()
         temperature_request_timeout = time.time()
         ok_timeout = time.time()
+        busy_timeout = ok_timeout
         while self._connection_state == ConnectionState.connected:
             line = self._readline()
             if line is None:
@@ -616,7 +622,7 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                     try:
                         if X_match[0] and Y_match[0] and Z_match[0]:
                             self._updateHeadPosition(float(X_match[0]),float(Y_match[0]),float(Z_match[0]))
-                            Logger.log("i","Position: X: %f\tY: %f\tZ: %f" % (self.headX,self.headY,self.headZ))
+                            #Logger.log("i","Position: X: %f\tY: %f\tZ: %f" % (self.headX,self.headY,self.headZ))
                         else:
                             Logger.log("w","Could not receive full position from response: %s", line)
                     except:
@@ -626,6 +632,13 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                 tag, value = line.split(b":", 1)
                 self._setEndstopState(tag,(b"H" in value or b"TRIGGERED" in value))
 
+            elif line.startswith("busy:") and not self_is_printing:
+                busy_timeout = time.time() + 2.5 # 2.5 chosen because busy is sent every 2 seconds
+
+            if time.time() > busy_timeout and not self_is_printing:
+                if not self._waiting_queue.empty():
+                    self._sendCommand(self._waiting_queue.get())
+
             if self._is_printing:
                 if line == b"" and time.time() > ok_timeout:
                     line = b"ok"  # Force a timeout (basically, send next command)
@@ -633,7 +646,7 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                 if b"ok" in line:
                     ok_timeout = time.time() + 5
                     if not self._command_queue.empty():
-                        self.sendCommand(self._command_queue.get())
+                        self._sendCommand(self._command_queue.get())
                     elif self._is_paused:
                         line = b""  # Force getting temperature as keep alive
                     else:
@@ -645,7 +658,7 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                     except:
                         if b"rs" in line:
                             self._gcode_position = int(line.split()[1])
-
+            
             # Request the temperature on comm timeout (every 2 seconds) when we are not printing.)
             if line == b"":
                 if self._num_extruders > 1:
