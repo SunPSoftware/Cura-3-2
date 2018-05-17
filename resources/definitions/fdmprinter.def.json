@@ -1632,7 +1632,6 @@
                     "unit": "mm",
                     "type": "float",
                     "default_value": 0.04,
-                    "value": "wall_line_width_0 / 4 if wall_line_count == 1 else wall_line_width_x / 4",
                     "minimum_value_warning": "0",
                     "maximum_value_warning": "machine_nozzle_size",
                     "enabled": "infill_sparse_density > 0",
