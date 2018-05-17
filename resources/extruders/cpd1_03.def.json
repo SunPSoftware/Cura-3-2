@@ -1,7 +1,7 @@
 {
     "id": "desktop_02_extruder_3",
     "version": 2,
-    "name": "3",
+    "name": "Nozzle 3",
     "inherits": "fdmextruder",
     "metadata": {
         "machine": "cpd1-02",

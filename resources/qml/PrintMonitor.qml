@@ -735,7 +735,7 @@ Column
                             }
                         }
                         font: UM.Theme.getFont("action_button")
-                        text: preheatUpdateTimer.running ? catalog.i18nc("@button Cancel pre-heating", "Cancel") : catalog.i18nc("@button", "Pre-heat")
+                        text: preheatUpdateTimer.running ? catalog.i18nc("@button Cancel pre-heating", "Cancel") : catalog.i18nc("@button", "Bed Set")
                     }
                 }
             }
@@ -866,7 +866,7 @@ Column
                             }
                         }
                         font: UM.Theme.getFont("action_button")
-                        text: preheatUpdateTimer.running ? catalog.i18nc("@button Cancel pre-heating", "Bed Heat Off") : catalog.i18nc("@button", "Bed Heat Off")
+                        text: preheatUpdateTimer.running ? catalog.i18nc("@button Cancel pre-heating", "Bed Heat Off") : catalog.i18nc("@button", "Bed Off")
                     }
                 }
             }

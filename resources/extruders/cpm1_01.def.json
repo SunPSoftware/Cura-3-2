@@ -1,7 +1,7 @@
 {
     "id": "mini_extruder_1",
     "version": 2,
-    "name": "1",
+    "name": "Nozzle 1",
     "inherits": "fdmextruder",
     "metadata": {
         "machine": "cpm1",
