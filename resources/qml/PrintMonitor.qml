@@ -161,6 +161,7 @@ Column
                     }
 					Row
 					{
+						id: extruderTempRow
 						width: base.width - 2 * UM.Theme.getSize("default_margin").width
 						height: childrenRect.height + UM.Theme.getSize("default_margin").width
 						anchors.left: parent.left
@@ -191,9 +192,9 @@ Column
 							}
 							border.width: UM.Theme.getSize("default_lining").width
 							border.color: !enabled ? UM.Theme.getColor("setting_control_disabled_border") : preheatTemperatureInputMouseArea.containsMouse ? UM.Theme.getColor("setting_control_border_highlight") : UM.Theme.getColor("setting_control_border")
-							anchors.left: parent.left
+							anchors.left: extruderTempRow.left
 							anchors.leftMargin: UM.Theme.getSize("default_margin").width
-							anchors.bottom: parent.bottom
+							anchors.top: extruderTempRow.top
 							anchors.bottomMargin: UM.Theme.getSize("default_margin").height
 							width: UM.Theme.getSize("setting_control").width
 							height: UM.Theme.getSize("setting_control").height
