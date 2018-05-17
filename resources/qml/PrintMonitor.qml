@@ -172,7 +172,7 @@ Column
 						TextField
 						{
 							id: extruderTemp
-							text: "") + "°C"
+							//text: "") + "°C"
 							font: UM.Theme.getFont("default")
 							onAccepted: connectedPrinter.directGCode(text)
 						}
