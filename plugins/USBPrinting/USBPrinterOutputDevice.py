@@ -582,61 +582,61 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                         self._setErrorState(line[6:])
                 Logger.log("d","Error end")
 
-            elif b" T:" in line or line.startswith(b"T:"):  # Temperature message
-                Logger.log("d","Temp start")
-                temperature_matches = re.findall(b"T(\d):(-{,1}[\d\.]+) \/(-{,1}[\d\.]+)", line)
-                temperature_set = False
-                try:
-                    for match in temperature_matches:
-                        if match[0]:
-                            extruder_nr = int(match[0])
-                            if extruder_nr >= container_stack.getProperty("machine_extruder_count", "value"):
-                                continue
-                            if match[1]:
-                                self._setHotendTemperature(extruder_nr, float(match[1]))
-                                temperature_set = True
-                            if match[2]:
-                                self._updateTargetHotendTemperature(extruder_nr, float(match[2]))
-                        #else:
-                        #    requested_temperatures = match
-                    #if not temperature_set and requested_temperatures:
-                    #    if requested_temperatures[1]:
-                    #        self._setHotendTemperature(self._temperature_requested_extruder_index, float(requested_temperatures[1]))
-                    #    if requested_temperatures[2]:
-                    #        self._updateTargetHotendTemperature(self._temperature_requested_extruder_index, float(requested_temperatures[2]))
-                except:
-                    Logger.log("w", "Could not parse hotend temperatures from response: %s", line)
-                # Check if there's also a bed temperature
-                temperature_matches = re.findall(b"B:(-{,1}[\d\.]+) \/(-{,1}[\d\.]+)", line)
-                if container_stack.getProperty("machine_heated_bed", "value") and len(temperature_matches) > 0:
-                    match = temperature_matches[0]
-                    try:
-                        if match[0]:
-                            self._setBedTemperature(float(match[0]))
-                        if match[1]:
-                            self._updateTargetBedTemperature(float(match[1]))
-                    except:
-                        Logger.log("w", "Could not parse bed temperature from response: %s", line)
-                Logger.log("d","Temp end")
+            #elif b" T:" in line or line.startswith(b"T:"):  # Temperature message
+            #    Logger.log("d","Temp start")
+            #    temperature_matches = re.findall(b"T(\d):(-{,1}[\d\.]+) \/(-{,1}[\d\.]+)", line)
+            #    temperature_set = False
+            #    try:
+            #        for match in temperature_matches:
+            #            if match[0]:
+            #                extruder_nr = int(match[0])
+            #                if extruder_nr >= container_stack.getProperty("machine_extruder_count", "value"):
+            #                    continue
+            #                if match[1]:
+            #                    self._setHotendTemperature(extruder_nr, float(match[1]))
+            #                    temperature_set = True
+            #                if match[2]:
+            #                    self._updateTargetHotendTemperature(extruder_nr, float(match[2]))
+            #            #else:
+            #            #    requested_temperatures = match
+            #        #if not temperature_set and requested_temperatures:
+            #        #    if requested_temperatures[1]:
+            #        #        self._setHotendTemperature(self._temperature_requested_extruder_index, float(requested_temperatures[1]))
+            #        #    if requested_temperatures[2]:
+            #        #        self._updateTargetHotendTemperature(self._temperature_requested_extruder_index, float(requested_temperatures[2]))
+            #    except:
+            #        Logger.log("w", "Could not parse hotend temperatures from response: %s", line)
+            #    # Check if there's also a bed temperature
+            #   temperature_matches = re.findall(b"B:(-{,1}[\d\.]+) \/(-{,1}[\d\.]+)", line)
+            #    if container_stack.getProperty("machine_heated_bed", "value") and len(temperature_matches) > 0:
+            #        match = temperature_matches[0]
+            #        try:
+            #            if match[0]:
+            #                self._setBedTemperature(float(match[0]))
+            #            if match[1]:
+            #                self._updateTargetBedTemperature(float(match[1]))
+            #        except:
+            #            Logger.log("w", "Could not parse bed temperature from response: %s", line)
+            #    Logger.log("d","Temp end")
             
-            elif line.startswith(b"X:") and b"Y:" in line and b"Z:" in line:  # Position message
-                Logger.log("d","Position start")
-                X_match = re.findall(b"X:(-{,1}[\d\.]+)", line)
-                Y_match = re.findall(b"Y:(-{,1}[\d\.]+)", line)
-                Z_match = re.findall(b"Z:(-{,1}[\d\.]+)", line)
-                #X_match = X_match[0]
-                #Y_match = Y_match[0]
-                #Z_match = Z_match[0]
-                if len(X_match) > 0:
-                    try:
-                        if X_match[0] and Y_match[0] and Z_match[0]:
-                            self._updateHeadPosition(float(X_match[0]),float(Y_match[0]),float(Z_match[0]))
-                            #Logger.log("i","Position: X: %f\tY: %f\tZ: %f" % (self.headX,self.headY,self.headZ))
-                        else:
-                            Logger.log("w","Could not receive full position from response: %s", line)
-                    except:
-                        Logger.log("w", "Could not parse position from response: %s", line)
-                Logger.log("d","Position end")
+            #elif line.startswith(b"X:") and b"Y:" in line and b"Z:" in line:  # Position message
+            #    Logger.log("d","Position start")
+            #    X_match = re.findall(b"X:(-{,1}[\d\.]+)", line)
+            #    Y_match = re.findall(b"Y:(-{,1}[\d\.]+)", line)
+            #    Z_match = re.findall(b"Z:(-{,1}[\d\.]+)", line)
+            #    #X_match = X_match[0]
+            #    #Y_match = Y_match[0]
+            #    #Z_match = Z_match[0]
+            #    if len(X_match) > 0:
+            #        try:
+            #            if X_match[0] and Y_match[0] and Z_match[0]:
+            #                self._updateHeadPosition(float(X_match[0]),float(Y_match[0]),float(Z_match[0]))
+            #                #Logger.log("i","Position: X: %f\tY: %f\tZ: %f" % (self.headX,self.headY,self.headZ))
+            #           else:
+            #                Logger.log("w","Could not receive full position from response: %s", line)
+            #        except:
+            #            Logger.log("w", "Could not parse position from response: %s", line)
+            #    Logger.log("d","Position end")
 
             elif b"_min" in line or b"_max" in line:
                 Logger.log("d","endstop start")
