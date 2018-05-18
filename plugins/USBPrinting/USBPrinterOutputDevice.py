@@ -559,10 +559,10 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
             if time.time() > temperature_request_timeout:
                 if self._num_extruders > 1:
                     self._temperature_requested_extruder_index = (self._temperature_requested_extruder_index + 1) % self._num_extruders
-                    self._sendCommand("M105 T%d" % (self._temperature_requested_extruder_index))
+                    self.queueCommand("M105 T%d" % (self._temperature_requested_extruder_index))
                 else:
-                    self._sendCommand("M105")
-                self._sendCommand("M114")
+                    self.queueCommand("M105")
+                self.queueCommand("M114")
                 temperature_request_timeout = time.time() + 5
 
             Logger.log("d","start of if, elif, else")
@@ -685,10 +685,10 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
             if line == b"":
                 if self._num_extruders > 1:
                     self._temperature_requested_extruder_index = (self._temperature_requested_extruder_index + 1) % self._num_extruders
-                    self._sendCommand("M105 T%d" % self._temperature_requested_extruder_index)
+                    self.queueCommand("M105 T%d" % self._temperature_requested_extruder_index)
                 else:
-                    self._sendCommand("M105")
-                self._sendCommand("M114")
+                    self.queueCommand("M105")
+                self.queueCommand("M114")
 
         Logger.log("i", "Printer connection listen thread stopped for %s" % self._serial_port)
 

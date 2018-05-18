@@ -1059,6 +1059,6 @@ Item
                 color: extruders.getItem(extruderNumber).color
             })
         }
-        supportExtruderCombobox.updateCurrentColor();
+        //supportExtruderCombobox.updateCurrentColor();
     }
 }
