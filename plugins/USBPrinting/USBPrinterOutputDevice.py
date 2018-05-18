@@ -647,7 +647,6 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
             #        self._sendCommand(con1)
             #        Logger.log("d","popped command %s", com1)
 
-    
             if self._is_printing:
                 if line == b"" and time.time() > ok_timeout:
                     line = b"ok"  # Force a timeout (basically, send next command)
