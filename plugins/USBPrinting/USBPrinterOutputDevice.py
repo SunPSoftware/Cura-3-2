@@ -648,7 +648,6 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                 Logger.log("d","else start")
                 pass
                 Logger.log("d","else end")
-
             Logger.log("d,""Made it to busy")
             #if line.startswith(b"busy:") and not self._is_printing:
             #    busy_timeout = time.time() + 2.5 # 2.5 chosen because busy is sent every 2 seconds
