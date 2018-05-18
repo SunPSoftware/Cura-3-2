@@ -612,6 +612,7 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                             self._updateTargetBedTemperature(float(match[1]))
                     except:
                         Logger.log("w", "Could not parse bed temperature from response: %s", line)
+            
             elif line.startswith(b"X:") and b"Y:" in line and b"Z:" in line:  # Position message
                 X_match = re.findall(b"X:(-{,1}[\d\.]+)", line)
                 Y_match = re.findall(b"Y:(-{,1}[\d\.]+)", line)
@@ -632,6 +633,7 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
             elif b"_min" in line or b"_max" in line:
                 tag, value = line.split(b":", 1)
                 self._setEndstopState(tag,(b"H" in value or b"TRIGGERED" in value))
+
             else:
                 pass
 
