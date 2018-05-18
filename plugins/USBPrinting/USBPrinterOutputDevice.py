@@ -57,7 +57,6 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
 
         ## Queue for commands that need to be send. Used when command is sent when a print is active.
         self._command_queue = queue.Queue()
-        self._waiting_queue = queue.Queue()
 
         self._is_printing = False
         self._is_paused = False
@@ -110,36 +109,36 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
 
     def _setTargetBedTemperature(self, temperature):
         Logger.log("d", "Setting bed temperature to %s", temperature)
-        self.queueCommand("M140 S%s" % temperature)
+        self._sendCommand("M140 S%s" % temperature)
 
     def _setTargetHotendTemperature(self, index, temperature):
         Logger.log("d", "Setting hotend %s temperature to %s", index, temperature)
-        self.queueCommand("M104 T%s S%s" % (index, temperature))
+        self._sendCommand("M104 T%s S%s" % (index, temperature))
 
     def _setHeadPosition(self, x, y , z, speed):
-        self.queueCommand("G0 X%s Y%s Z%s F%s" % (x, y, z, speed))
+        self._sendCommand("G0 X%s Y%s Z%s F%s" % (x, y, z, speed))
 
     def _setHeadX(self, x, speed):
-        self.queueCommand("G0 X%s F%s" % (x, speed))
+        self._sendCommand("G0 X%s F%s" % (x, speed))
 
     def _setHeadY(self, y, speed):
-        self.queueCommand("G0 Y%s F%s" % (y, speed))
+        self._sendCommand("G0 Y%s F%s" % (y, speed))
 
     def _setHeadZ(self, z, speed):
-        self.queueCommand("G0 Y%s F%s" % (z, speed))
+        self._sendCommand("G0 Y%s F%s" % (z, speed))
 
     def _homeHead(self):
-        self.queueCommand("G28 X")
-        self.queueCommand("G28 Y")
+        self._sendCommand("G28 X")
+        self._sendCommand("G28 Y")
         
     def _homeX(self):
-        self.queueCommand("G28 X")
+        self._sendCommand("G28 X")
 
     def _homeY(self):
-        self.queueCommand("G28 Y")
+        self._sendCommand("G28 Y")
 
     def _homeBed(self):
-        self.queueCommand("G28 Z")
+        self._sendCommand("G28 Z")
 
     ##  Updates the target bed temperature from the printer, and emit a signal if it was changed.
     #
@@ -184,25 +183,25 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
         self.printGCode(gcode_list)
 
     def _moveHead(self, x, y, z, speed):
-        self.queueCommand("G91")
-        self.queueCommand("G0 X%f Y%f Z%f F%f" % (x, y, z, speed))
-        self.queueCommand("G90")
+        self._sendCommand("G91")
+        self._sendCommand("G0 X%f Y%f Z%f F%f" % (x, y, z, speed))
+        self._sendCommand("G90")
         
 	# Added to create manual extruder control 2017.11.03
     def _moveExtruder(self, e, speed):
-        self.queueCommand("G91")
-        self.queueCommand("G0 E%s F%s" % (e, speed))
-        self.queueCommand("G90")
+        self._sendCommand("G91")
+        self._sendCommand("G0 E%s F%s" % (e, speed))
+        self._sendCommand("G90")
     # Added to allow for tool change 2017.11.07
     def _changeTool(self, t):
-        self.queueCommand("T%s" % t)
+        self._sendCommand("T%s" % t)
 
     ## Send a gcode to the machine 2017.12.05
 	#  Note that this is a relative move. 
 	#  /param com command to be sent
 	#  /sa _directGCode Implementation function
     def _directGCode(self, com):
-        self.queueCommand(com)
+        self._sendCommand(com)
 
     ##  Start a print based on a g-code.
     #   \param gcode_list List with gcode (strings).
@@ -493,11 +492,6 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
         elif self._connection_state == ConnectionState.connected:
             self._sendCommand(cmd)
 
-    ## Queue up command to be sent when machine is not busy
-    def queueCommand(self, cmd):
-        self._waiting_queue.put(cmd)
-        Logger.log("d","Queued command %s", cmd)
-
     ##  Set the error state with a message.
     #   \param error String with the error message.
     def _setErrorState(self, error):
@@ -550,7 +544,6 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
         container_stack = Application.getInstance().getGlobalContainerStack()
         temperature_request_timeout = time.time()
         ok_timeout = time.time()
-        busy_timeout = ok_timeout
         while self._connection_state == ConnectionState.connected:
             line = self._readline()
             if line is None:
@@ -559,16 +552,13 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
             if time.time() > temperature_request_timeout:
                 if self._num_extruders > 1:
                     self._temperature_requested_extruder_index = (self._temperature_requested_extruder_index + 1) % self._num_extruders
-                    self.queueCommand("M105 T%d" % (self._temperature_requested_extruder_index))
+                    self._sendCommand("M105 T%d" % (self._temperature_requested_extruder_index))
                 else:
-                    self.queueCommand("M105")
-                self.queueCommand("M114")
+                    self._sendCommand("M105")
+                self._sendCommand("M114")
                 temperature_request_timeout = time.time() + 5
 
-            Logger.log("d","start of if, elif, else")
-
             if line.startswith(b"Error:"):
-                Logger.log("d","Error start")
                 # Oh YEAH, consistency.
                 # Marlin reports a MIN/MAX temp error as "Error:x\n: Extruder switched off. MAXTEMP triggered !\n"
                 # But a bed temp error is reported as "Error: Temperature heated bed switched off. MAXTEMP triggered !!"
@@ -580,85 +570,61 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                 if b"Extruder switched off" in line or b"Temperature heated bed switched off" in line or b"Something is wrong, please turn off the printer." in line:
                     if not self.hasError():
                         self._setErrorState(line[6:])
-                Logger.log("d","Error end")
 
-            #elif b" T:" in line or line.startswith(b"T:"):  # Temperature message
-            #    Logger.log("d","Temp start")
-            #    temperature_matches = re.findall(b"T(\d):(-{,1}[\d\.]+) \/(-{,1}[\d\.]+)", line)
-            #    temperature_set = False
-            #    try:
-            #        for match in temperature_matches:
-            #            if match[0]:
-            #                extruder_nr = int(match[0])
-            #                if extruder_nr >= container_stack.getProperty("machine_extruder_count", "value"):
-            #                    continue
-            #                if match[1]:
-            #                    self._setHotendTemperature(extruder_nr, float(match[1]))
-            #                    temperature_set = True
-            #                if match[2]:
-            #                    self._updateTargetHotendTemperature(extruder_nr, float(match[2]))
-            #            #else:
-            #            #    requested_temperatures = match
-            #        #if not temperature_set and requested_temperatures:
-            #        #    if requested_temperatures[1]:
-            #        #        self._setHotendTemperature(self._temperature_requested_extruder_index, float(requested_temperatures[1]))
-            #        #    if requested_temperatures[2]:
-            #        #        self._updateTargetHotendTemperature(self._temperature_requested_extruder_index, float(requested_temperatures[2]))
-            #    except:
-            #        Logger.log("w", "Could not parse hotend temperatures from response: %s", line)
-            #    # Check if there's also a bed temperature
-            #   temperature_matches = re.findall(b"B:(-{,1}[\d\.]+) \/(-{,1}[\d\.]+)", line)
-            #    if container_stack.getProperty("machine_heated_bed", "value") and len(temperature_matches) > 0:
-            #        match = temperature_matches[0]
-            #        try:
-            #            if match[0]:
-            #                self._setBedTemperature(float(match[0]))
-            #            if match[1]:
-            #                self._updateTargetBedTemperature(float(match[1]))
-            #        except:
-            #            Logger.log("w", "Could not parse bed temperature from response: %s", line)
-            #    Logger.log("d","Temp end")
-            
-            #elif line.startswith(b"X:") and b"Y:" in line and b"Z:" in line:  # Position message
-            #    Logger.log("d","Position start")
-            #    X_match = re.findall(b"X:(-{,1}[\d\.]+)", line)
-            #    Y_match = re.findall(b"Y:(-{,1}[\d\.]+)", line)
-            #    Z_match = re.findall(b"Z:(-{,1}[\d\.]+)", line)
-            #    #X_match = X_match[0]
-            #    #Y_match = Y_match[0]
-            #    #Z_match = Z_match[0]
-            #    if len(X_match) > 0:
-            #        try:
-            #            if X_match[0] and Y_match[0] and Z_match[0]:
-            #                self._updateHeadPosition(float(X_match[0]),float(Y_match[0]),float(Z_match[0]))
-            #                #Logger.log("i","Position: X: %f\tY: %f\tZ: %f" % (self.headX,self.headY,self.headZ))
-            #           else:
-            #                Logger.log("w","Could not receive full position from response: %s", line)
-            #        except:
-            #            Logger.log("w", "Could not parse position from response: %s", line)
-            #    Logger.log("d","Position end")
+            elif b" T:" in line or line.startswith(b"T:"):  # Temperature message
+                temperature_matches = re.findall(b"T(\d):(-{,1}[\d\.]+) \/(-{,1}[\d\.]+)", line)
+                temperature_set = False
+                try:
+                    for match in temperature_matches:
+                        if match[0]:
+                            extruder_nr = int(match[0])
+                            if extruder_nr >= container_stack.getProperty("machine_extruder_count", "value"):
+                                continue
+                            if match[1]:
+                                self._setHotendTemperature(extruder_nr, float(match[1]))
+                                temperature_set = True
+                            if match[2]:
+                                self._updateTargetHotendTemperature(extruder_nr, float(match[2]))
+                        #else:
+                        #    requested_temperatures = match
+                    #if not temperature_set and requested_temperatures:
+                    #    if requested_temperatures[1]:
+                    #        self._setHotendTemperature(self._temperature_requested_extruder_index, float(requested_temperatures[1]))
+                    #    if requested_temperatures[2]:
+                    #        self._updateTargetHotendTemperature(self._temperature_requested_extruder_index, float(requested_temperatures[2]))
+                except:
+                    Logger.log("w", "Could not parse hotend temperatures from response: %s", line)
+                # Check if there's also a bed temperature
+                temperature_matches = re.findall(b"B:(-{,1}[\d\.]+) \/(-{,1}[\d\.]+)", line)
+                if container_stack.getProperty("machine_heated_bed", "value") and len(temperature_matches) > 0:
+                    match = temperature_matches[0]
+                    try:
+                        if match[0]:
+                            self._setBedTemperature(float(match[0]))
+                        if match[1]:
+                            self._updateTargetBedTemperature(float(match[1]))
+                    except:
+                        Logger.log("w", "Could not parse bed temperature from response: %s", line)
+            elif line.startswith(b"X:") and b"Y:" in line and b"Z:" in line:  # Position message
+                X_match = re.findall(b"X:(-{,1}[\d\.]+)", line)
+                Y_match = re.findall(b"Y:(-{,1}[\d\.]+)", line)
+                Z_match = re.findall(b"Z:(-{,1}[\d\.]+)", line)
+                #X_match = X_match[0]
+                #Y_match = Y_match[0]
+                #Z_match = Z_match[0]
+                if len(X_match) > 0:
+                    try:
+                        if X_match[0] and Y_match[0] and Z_match[0]:
+                            self._updateHeadPosition(float(X_match[0]),float(Y_match[0]),float(Z_match[0]))
+                            #Logger.log("i","Position: X: %f\tY: %f\tZ: %f" % (self.headX,self.headY,self.headZ))
+                        else:
+                            Logger.log("w","Could not receive full position from response: %s", line)
+                    except:
+                        Logger.log("w", "Could not parse position from response: %s", line)
 
             elif b"_min" in line or b"_max" in line:
-                Logger.log("d","endstop start")
                 tag, value = line.split(b":", 1)
                 self._setEndstopState(tag,(b"H" in value or b"TRIGGERED" in value))
-                Logger.log("d","endstop end")
-
-            else:
-                Logger.log("d","else start")
-                pass
-                Logger.log("d","else end")
-            Logger.log("d,""Made it to busy")
-            #if line.startswith(b"busy:") and not self._is_printing:
-            #    busy_timeout = time.time() + 2.5 # 2.5 chosen because busy is sent every 2 seconds
-            #    Logger.log("d","BUSY: %s", line)
-
-            Logger.log ("d","%f %f",time.time(),busy_timeout)
-            #if time.time() > busy_timeout and not self_is_printing:
-            #    if not self._waiting_queue.empty():
-            #        com1 = self._waiting_queue.get()
-            #        self._sendCommand(con1)
-            #        Logger.log("d","popped command %s", com1)
 
             if self._is_printing:
                 if line == b"" and time.time() > ok_timeout:
@@ -667,7 +633,7 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                 if b"ok" in line:
                     ok_timeout = time.time() + 5
                     if not self._command_queue.empty():
-                        self._sendCommand(self._command_queue.get())
+                        self.sendCommand(self._command_queue.get())
                     elif self._is_paused:
                         line = b""  # Force getting temperature as keep alive
                     else:
@@ -679,15 +645,15 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                     except:
                         if b"rs" in line:
                             self._gcode_position = int(line.split()[1])
-            
+
             # Request the temperature on comm timeout (every 2 seconds) when we are not printing.)
             if line == b"":
                 if self._num_extruders > 1:
                     self._temperature_requested_extruder_index = (self._temperature_requested_extruder_index + 1) % self._num_extruders
-                    self.queueCommand("M105 T%d" % self._temperature_requested_extruder_index)
+                    self._sendCommand("M105 T%d" % self._temperature_requested_extruder_index)
                 else:
-                    self.queueCommand("M105")
-                self.queueCommand("M114")
+                    self._sendCommand("M105")
+                self._sendCommand("M114")
 
         Logger.log("i", "Printer connection listen thread stopped for %s" % self._serial_port)
 
