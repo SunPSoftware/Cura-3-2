@@ -391,6 +391,7 @@ class USBPrinterOutputDevice(PrinterOutputDevice):
                     continue
             else:
                 if not self.setBaudRate(baud_rate):
+                    Logger.log("d", "Failed to connect to printer with serial %s on baud rate %s", self._serial_port, baud_rate)
                     continue  # Could not set the baud rate, go to the next
 
             time.sleep(1.5) # Ensure that we are not talking to the bootloader. 1.5 seconds seems to be the magic number
