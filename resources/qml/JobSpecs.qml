@@ -51,7 +51,7 @@ Item {
     {
         id: jobNameRow
         anchors.top: parent.top
-        anchors.right: parent.right
+        anchors.left: parent.left
         height: UM.Theme.getSize("jobspecs_line").height
         visible: base.activity
 
@@ -128,7 +128,7 @@ Item {
     {
         id: boundingSpec
         anchors.top: jobNameRow.bottom
-        anchors.right: parent.right
+        anchors.left: parent.left
         height: UM.Theme.getSize("jobspecs_line").height
         verticalAlignment: Text.AlignVCenter
         font: UM.Theme.getFont("small")
