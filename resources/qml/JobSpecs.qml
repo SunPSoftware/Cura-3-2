@@ -100,7 +100,7 @@ Item {
                 maximumLength: 120
                 property int unremovableSpacing: 5
                 text: PrintInformation.jobName
-                horizontalAlignment: TextInput.AlignRight
+                horizontalAlignment: TextInput.AlignLeft
                 onTextChanged: {
                     PrintInformation.setJobName(text);
                 }
