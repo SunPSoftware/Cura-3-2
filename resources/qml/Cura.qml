@@ -342,7 +342,7 @@ UM.MainWindow
                     bottom: parent.bottom;
                     left: sidebar.right;
                     bottomMargin: UM.Theme.getSize("default_margin").height;
-                    leftMargin: UM.Theme.getSize("default_margin").width * 10;
+                    leftMargin: UM.Theme.getSize("default_margin").width;
                 }
             }
 			// moved it to the right of the sidebar after moving sidebar to the left 2017.11.10
