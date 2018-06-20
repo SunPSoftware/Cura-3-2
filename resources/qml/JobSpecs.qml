@@ -63,7 +63,7 @@ Item {
             Button
             {
                 id: printJobPencilIcon
-                anchors.left: prinJobTextField.right
+                anchors.left: printJobTextfield.right
                 anchors.verticalCenter: parent.verticalCenter
                 width: UM.Theme.getSize("save_button_specs_icons").width
                 height: UM.Theme.getSize("save_button_specs_icons").height
